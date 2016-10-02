@@ -1,7 +1,7 @@
 <?php
-	$host = 'localhost';
+	$hostAddress = 'localhost';
 	$database = 'wilfredw_csc210Project';
-	$userName = 'wilfredw_wilfred';
-	$password = 'csc210password';
+	$uname = 'wilfredw_wilfred';
+	$pword = 'csc210password';
 
 ?>
