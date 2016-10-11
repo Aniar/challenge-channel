@@ -1,7 +1,8 @@
 #home {
 	background: white url("../img/color-run.jpg") no-repeat fixed center;
-	background-size: 100%;
+	background-size: cover;
 	position: relative;
+	height: 100vh;
 }
 
 #login {
