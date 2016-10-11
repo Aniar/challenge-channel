@@ -1,0 +1,48 @@
+#home {
+	background: white url("../img/color-run.jpg") no-repeat fixed center;
+	background-size: 100%;
+	position: relative;
+}
+
+#box {
+	text-align: center;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 25px;
+	padding: 25px;
+
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	margin-right: -50%;
+}
+
+#box h1 {
+	color: black;
+	font-size: 3em;
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	text-shadow: 0px 0px 3px rgba(255,255,255,.5);
+}
+
+#box a {
+	text-decoration: none;
+	color: black;
+	font-family: Helvetica, sans-serif;
+}
+
+.button {
+	display: inline-block;
+	text-align: center;
+	padding: 0.5em 2em .55em;
+	background: gray; /* for browsers that don't support gradient */
+	background: -webkit-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%);
+	background: -moz-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%);
+	background: -o-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%);
+	background: -ms-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%);
+	background: linear-gradient(to bottom, #a9a9a9 31%, #d3d3d3 100%);
+
+	border-radius: 25px;
+	border: 1px solid gray;
+
+	box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
+}
