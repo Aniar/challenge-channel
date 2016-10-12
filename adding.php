@@ -57,6 +57,18 @@
 	   
 	  }
 echo <<<_END
+			<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sign Up | Challenge Channel</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body id="signup">
+	<div class="box">
+		<h1>Challenge Channel</h1>
+		<h2 class="center">Get started</h2>
+
+		<!-- html form --> 
 	   		<form action="adding.php" method="post" <pre>
 	   		firstName <input type="text" name="firstName"><br>
 	   		lastName <input type="text" name="lastName"><br>
@@ -66,6 +78,9 @@ echo <<<_END
 	   		age <input type="text" name="age"><br>
 	   		<input type="submit" value="ADD RECORD">
 	   		</pre></form>
+	   		</div>
+</body>
+</html>
 _END;
 
 
@@ -78,3 +93,5 @@ _END;
 			$result->close();
 			$conn->close();
 ?>
+
+	
