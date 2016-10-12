@@ -19,7 +19,6 @@
 	   	$password = get_post($conn, 'password');
 	   	$age = get_post($conn, 'age');
 
-	  	
 	   	#query data base with sql
 		$query = "select * FROM userInfo";
 		$result = $conn ->query($query);
