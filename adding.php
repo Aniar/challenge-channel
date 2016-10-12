@@ -32,7 +32,16 @@
 		for ($i=0; $i < $rows; $i++) { 
 		   $result->data_seek($i);
 		   if(($result->fetch_assoc()['userName']) == $userName ){
-		   	echo "THAT USERNAME IS TAKEN!!!";
+echo <<<_END
+<script>
+function hello() {
+document.getElementById("message").innerHTML = "Sorry that is taken";
+}
+
+window.onload = hello;
+</script>
+
+_END;
 		   	$userNameTaken = ture;
 			$result->close();
 			$conn->close();
@@ -42,7 +51,14 @@
 		if(!$userNameTaken) {
 
 
-		   		echo "That username is not taken!";
+echo <<<_END
+<script>
+function hello() {
+document.getElementById("message").innerHTML = "Nice you have an account now!";
+}
+window.onload = hello;
+</script>
+_END;
 	   			$query = "INSERT INTO userInfo values".
 	   	 		"('$firstName','$lastName','$userName','$email','$password','$age')";
 
@@ -57,7 +73,7 @@
 	   
 	  }
 echo <<<_END
-			<html>
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>Sign Up | Challenge Channel</title>
@@ -69,6 +85,7 @@ echo <<<_END
 		<h2 class="center">Get started</h2>
 
 		<!-- html form --> 
+			<p id='message'> </p>
 	   		<form action="adding.php" method="post" <pre>
 	   		firstName <input type="text" name="firstName"><br>
 	   		lastName <input type="text" name="lastName"><br>
