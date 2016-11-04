@@ -34,21 +34,26 @@
 		return $verified;
 		}
 
-	#create database login info object
-	$databaseLogin = new stdClass;
-	$databaseLogin->hostAddress =  $hostAddress;
-	$databaseLogin->database = $database;
-	$databaseLogin->username = $uname
-	$databaseLogin->password = $pword;
-
-	#check user in database
-	if(authenticate($_POST["username"], $_POST["password"], $databaseLogin)){
-		echo "SUCCESS!!!";
+	if($_COOKIE["loggedIn"]){
+		echo "Logged In!!!";
 	}
 	else{
-		echo "FAILURE";
+		#create database login info object
+		$databaseLogin = new stdClass;
+		$databaseLogin->hostAddress =  $hostAddress;
+		$databaseLogin->database = $database;
+		$databaseLogin->username = $uname
+		$databaseLogin->password = $pword;
+
+		#check user in database
+		if(authenticate($_POST["username"], $_POST["password"], $databaseLogin)){
+			echo "Logged In!!!";
+		}
+		else{
+			echo "Not logged in";
+		}
 	}
 
-	echo "HELLO";
+	echo " HELLO";
 
 ?>
