@@ -35,7 +35,7 @@
 		}
 
 	if($_COOKIE["loggedIn"]){
-		echo "Logged In!!!";
+		echo "Already logged In!!!";
 	}
 	else{
 		#create database login info object
