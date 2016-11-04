@@ -1,59 +1,46 @@
 <?php  #learning php,mysql + javascript was heavily used
 	require_once 'loginInfo.php'; #getting info to connect to the database
 
+  #new connection
+	$conn = new mysqli($hostAddress, $uname, $pword, $database); 
+	if($conn->connect_error) die($conn->connect_error);
 
-	function authenticate($username, $password, $databaseInfo){
-		#new connection
-		$conn = new mysqli($databaseInfo->hostAddress, $databaseInfo->username, $databaseInfo->password, $databaseInfo->database); 
-		if($conn->connect_error) die($conn->connect_error);
+  #query data base with sql
+  $query = "select * FROM userInfo";
+  $result = $conn ->query($query);
+  if(!$result) die ($conn->error);
 
-		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
-		$stmt->bind_param("s", $username);
-		$stmt->execute();
 
-		#get record and make into associative array
-		$stmt->bind_result($result);
+  $rows = $result->num_rows;
 
-		#should NEVER have multiple identical usernames
-		assert($stmt->num_rows==1);
+  $usernameInput = $_POST["username"];
+  $passwordInput = $_POST["password"];
 
-		$verified = false;
 
-		#verify password
-		if(password_verify($password, $result->fetch_assoc()['password'])){
-			#set cookie to remember login for 1 month on entire domain
-			setcookie("loggedIn", true, strtotime("+1 month"), "/");
-			
-			$verified = true;
-		}
+  #going through all the username's
+  
+  for ($i=0; $i < $rows; $i++) { 
+    $result->data_seek($i);
+      
+       $temp = ($result->fetch_assoc()['userName']);
+    if($temp == $usernameInput){
+      $result->data_seek($i);
+  
+      $tempThree = $result->fetch_assoc()['password'];
+        if($tempThree == $passwordInput){
+            echo "YOU ARE IN!";
+            #YOU ARE LOGGED IN
+        } else {
+          echo "you have not got in";
+        }
+    }
 
-		#cleanup
-		$stmt->close();
-		$conn->close();
+  }
+   echo "HELLO";
 
-		return $verified;
-		}
+  $result->close();
+  $conn->close();
 
-	if($_COOKIE["loggedIn"]){
-		echo "Already logged In!!!";
-	}
-	else{
-		#create database login info object
-		$databaseLogin = new stdClass;
-		$databaseLogin->hostAddress =  $hostAddress;
-		$databaseLogin->database = $database;
-		$databaseLogin->username = $uname
-		$databaseLogin->password = $pword;
 
-		#check user in database
-		if(authenticate($_POST["username"], $_POST["password"], $databaseLogin)){
-			echo "Logged In!!!";
-		}
-		else{
-			echo "Not logged in";
-		}
-	}
 
-	echo " HELLO";
-
-?>
+?> 
