@@ -28,7 +28,7 @@
   
       $tempThree = $result->fetch_assoc()['password'];
         if($tempThree == $passwordInput){
-            echo "<script> window.location = 'profile.php' </script>";
+            echo "<script> window.location = 'http://wilfredwallis.com/profile.php' </script>";
             #YOU ARE LOGGED IN
         } else {
           echo "you have not got in";
