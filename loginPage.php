@@ -1,45 +1,49 @@
 <?php  #learning php,mysql + javascript was heavily used
 	require_once 'loginInfo.php'; #getting info to connect to the database
 
-  #new connection
-	$conn = new mysqli($hostAddress, $uname, $pword, $database); 
-	if($conn->connect_error) die($conn->connect_error);
 
-  #query data base with sql
-  $query = "select * FROM userInfo";
-  $result = $conn ->query($query);
-  if(!$result) die ($conn->error);
+	function authenticate($username, $password, $databaseInfo){
+		#new connection
+		$conn = new mysqli($hostAddress, $uname, $pword, $database); 
+		if($conn->connect_error) die($conn->connect_error);
 
+		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
+		$stmt->bind_param("s", $username);
+		$stmt->execute();
 
-  $rows = $result->num_rows;
+		#get record and make into associative array
+		$stmt->bind_result($result);
 
-  $usernameInput = $_POST["username"];
-  $passwordInput = $_POST["password"];
+		#should NEVER have multiple identical usernames
+		assert($stmt->num_rows==1);
 
+		#verify password
+		$verified = password_verify($password, $result->fetch_assoc()['password']);
 
-  #going through all the username's
-  
-  for ($i=0; $i < $rows; $i++) { 
-    $result->data_seek($i);
-      
-       $temp = ($result->fetch_assoc()['userName']);
-    if($temp == $usernameInput){
-      $result->data_seek($i);
-  
-      $tempThree = $result->fetch_assoc()['password'];
-        if($tempThree == $passwordInput){
-            echo "YOU ARE IN!";
-            #YOU ARE LOGGED IN
-        } else {
-          echo "you have not got in";
-        }
-    }
+		#cleanup
+		$stmt->close();
+		$conn->close();
 
-  }
-   echo "HELLO";
+		return $verified;
+		}
 
-  $result->close();
-  $conn->close();
+	#create database login info object
+	$databaseLogin = new stdClass;
+	$databaseLogin->hostAddress =  $hostAddress;
+	$databaseLogin->database = $database;
+	$databaseLogin->username = $uname
+	$databaseLogin->password = $pword;
+
+	#check user in database
+	if(authenticate($_POST["username"], $_POST["password"], $databaseLogin)){
+		echo "SUCCESS!!!";
+	}
+	else{
+		echo "FAILURE";
+	}
+
+	echo "HELLO";
+
 
 
 
