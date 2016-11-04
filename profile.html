@@ -3,6 +3,12 @@
 		<meta charset="utf-8">
 		<title>Profile | Challenge Channel</title>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+		 <!-- Bootstrap CSS -->
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+   <!-- Bootstrap javascript -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 	</head>
 	<body>
 		<div class="container">
@@ -22,20 +28,9 @@
 		</ul>
 	</nav>
 	<hr>
-	<div class="row">
-		<div class="col-md-2">
-			<p>hello</p>
-		</div>
-		<div class="col-md-10">
-			<p>hello</p>
-		</div>
-	</div>
-
-
-		<h1>Challenge Channel</h1>
-		<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
-
-		<div class="user-info">
+	<div class="row"> <!-- row -->
+		<div class="col-md-4">
+			<div class="user-info">
 			<!-- fill with list of user info and social network friends -->
 			<ul>
 				<li>firstname lastname</li>
@@ -44,14 +39,16 @@
 			</ul>
 
 		</div><!-- .user-info -->
-
-		<div class="profile-picture">
+		</div>
+		<div class="col-md-4">
+			<div class="profile-picture">
 			<!-- user's profile picture -->
 			<img src="img/user.png">
 
 		</div><!-- .profile-picture -->
-
-		<div class="completed">
+		</div>
+		<div class="col-md-4">
+			<div class="completed">
 			<!-- user's completed/past challenges in a list -->
 			<ul>
 				<li>done</li>
@@ -60,14 +57,18 @@
 			</ul>
 
 		</div><!-- .completed -->
+	</div>
 
+	</div><!-- ./row -->
+		<div class="row"> <!-- ./row -->
+			<p>PROGRESS BAR</p>
+		</div><!-- ./row -->
+	</div><!-- ./ con -->
 		<div class="current">
 
 		</div><!-- .current -->
 	</div><!-- .container -->
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
 	</body>
 </html>
