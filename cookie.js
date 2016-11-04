@@ -1,6 +1,6 @@
 if(navigator.cookieEnabled){
 	if(getCookie("loggedIn")){
-		window.location = "loginPage.php";
+		window.location = "profile.php";
 	}
 }
 
