@@ -13,7 +13,6 @@ nav li {
 .right {
 	float: right;
 }
-
 #home {
 	background: white url("../img/color-run.jpg") no-repeat fixed center;
 	background-size: cover;
@@ -30,7 +29,6 @@ nav li {
 	position: relative;
 	font-family: Helvetica, sans-serif;
 }
-
 #login ul, #signup ul {
 	list-style-type: none;
 	margin: 0;
