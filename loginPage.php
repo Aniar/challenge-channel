@@ -4,7 +4,7 @@
 
 	function authenticate($username, $password, $databaseInfo){
 		#new connection
-		$conn = new mysqli($hostAddress, $uname, $pword, $database); 
+		$conn = new mysqli($databaseInfo->hostAddress, $databaseInfo->username, $databaseInfo->password, $databaseInfo->database); 
 		if($conn->connect_error) die($conn->connect_error);
 
 		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
@@ -50,8 +50,5 @@
 	}
 
 	echo "HELLO";
-
-
-
 
 ?>
