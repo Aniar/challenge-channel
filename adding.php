@@ -45,9 +45,28 @@ _END;
 			$result->close();
 			$conn->close();
 
+		
+
+		   
 		   } 
+		   	$result->data_seek($i);
+			 
+			if($result->fetch_assoc()['email'] == $email){
+			$emailTaken = ture;
+echo <<<_END
+<script>
+function hello() {
+document.getElementById("message").innerHTML = "Sorry that email is taken";
+}
+
+window.onload = hello;
+</script>
+
+_END;
+
+			}
 		}
-		if(!$userNameTaken) {
+		if(!$userNameTaken && !$emailTaken ) {
 
 
 echo <<<_END
