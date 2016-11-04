@@ -1,3 +1,19 @@
+nav {
+	width: 100%
+}
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+nav li {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+}
+.right {
+	float: right;
+}
+
 #home {
 	background: white url("../img/color-run.jpg") no-repeat fixed center;
 	background-size: cover;
