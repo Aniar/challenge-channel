@@ -10,15 +10,9 @@
 		<h1>Challenge Channel</h1>
 		<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
 		
-		<input type="checkbox" id="complete" onClick="finishBar()"><label for="complete"> Task Complete?</label>
-		<section id="progressbar">
-			<progress class="progress" value="20" max="100"></progress><span>Progress</span>
-		</section>
-		
 		<article>
 			<h3>User's Current Challenges</h3>
 			
-			<!-- RAINAS CODE -->
 			<div id="updateCurrent">
 				<h4 id="title">Finishing My Paper</h4>
 				<p id="timeline">5 Days</p>
@@ -53,7 +47,6 @@
 			<h3>User Name</h3>
 			
 		</aside>
-		<script src="js/progressbar.js"></script>
 		
 		 <!-- Bootstrap CSS -->
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -113,12 +106,18 @@
 	</div><!-- ./row -->
 		<div class="row"> <!-- ./row -->
 			<p>PROGRESS BAR</p>
+			
+			<input type="checkbox" id="complete" onClick="finishBar()"><label for="complete"> Task Complete?</label>
+			<section id="progressbar">
+				<progress class="progress" value="20" max="100"></progress><span>Progress</span>
+			</section>
+			
 		</div><!-- ./row -->
 	</div><!-- ./ con -->
 		<div class="current">
 
 		</div><!-- .current -->
 	</div><!-- .container -->
-
+	<script src="js/progressbar.js"></script>
 	</body>
 </html>
