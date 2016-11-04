@@ -17,8 +17,15 @@
 		#should NEVER have multiple identical usernames
 		assert($stmt->num_rows==1);
 
+		$verified = false;
+
 		#verify password
-		$verified = password_verify($password, $result->fetch_assoc()['password']);
+		if(password_verify($password, $result->fetch_assoc()['password'])){
+			#set cookie to remember login for 1 month on entire domain
+			setcookie("loggedIn", true, strtotime("+1 month"), "/")
+			
+			$verified = true;
+		}
 
 		#cleanup
 		$stmt->close();
