@@ -1,0 +1,115 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Profile | Challenge Channel</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	</head>
+	<body>
+		
+		 <!-- Bootstrap CSS -->
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+   <!-- Bootstrap javascript -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+
+<!--	<?php include 'inc/nav.php';?> -->
+
+	<nav>
+		<ul>
+			<li><a href="#"><img src="img/color-palette48.png" alt="icon"></a></li>
+			<li>
+				<form>
+					Search: <input type="text" name="searchbar">
+					<input type="submit">
+				</form>
+			</li>
+			<li class="right"><a href="#"><img  src="img/user48.png" alt="user profile picture"></a></li>
+		</ul>
+	</nav>
+	<hr>
+	<div class="row"> <!-- row -->
+		<div class="col-md-4">
+			<div class="user-info">
+			<!-- fill with list of user info and social network friends -->
+			<ul>
+				<li>firstname lastname</li>
+				<li>username</li>
+				<li># of friends</li>
+			</ul>
+
+		</div><!-- .user-info -->
+		</div>
+		<div class="col-md-4">
+			<div class="profile-picture">
+			<!-- user's profile picture -->
+			<img src="img/user.png">
+
+		</div><!-- .profile-picture -->
+		</div>
+		<div class="col-md-4">
+			<div class="completed">
+			<!-- user's completed/past challenges in a list -->
+			<ul>
+				<li>done</li>
+				<li>done</li>
+				<li>done</li>
+			</ul>
+
+		</div><!-- .completed -->
+	</div>
+
+	</div><!-- ./row -->
+		<div class="row"> <!-- row -->
+			<p>PROGRESS BAR</p>
+			<article>
+			<h3>User's Current Challenges</h3>
+			
+			<div id="updateCurrent">
+				<h4 id="title">Finishing My Paper</h4>
+				<p id="timeline">5 Days</p>
+				<ol type="1" id="steps">
+					<li>Write a title</li>
+					<li>Make bullet points of important topics to discuss</li>
+					<li>Section the points into the intro, body and conclusion</li>
+					<li>Write each paragraph</li>
+					<li>Write transition sentences and combine the sections</li>
+				</ol>
+			</div>
+
+			<h3>User's Completed Challenges</h3>
+
+			<!-- 
+<div id="updateCompleted">
+				<a href="#completed" id="completedChallenges">Meditating</a>
+			</div>
+ -->
+
+			<h3>User's Liked Challenges</h3> <!-- from templates, friends, etc. -->
+		
+			<!-- 
+<div id="updateLiked">
+				<a href="#liked" id="likedChallenges">Jumping Over a Hurdle</a>
+			</div>
+ -->
+		
+		</article>
+			
+			<input type="checkbox" id="complete" onClick="finishBar()"><label for="complete"> Task Complete?</label>
+			<section id="progressbar">
+				<progress class="progress" value="20" max="100"></progress><span>Progress</span>
+			</section>
+			
+		</div><!-- ./row -->
+	</div><!-- ./ con -->
+		<div class="current">
+
+		</div><!-- .current -->
+	</div><!-- .container -->
+	<script src="js/progressbar.js"></script>
+	</body>
+</html>
