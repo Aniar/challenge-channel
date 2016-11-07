@@ -1,6 +1,6 @@
 if(navigator.cookieEnabled){
 	if(getCookie("loggedIn")){
-		window.location = "http://wilfredwallis.com/csc210/profile.php";
+		window.location = "../profile.php";
 	}
 }
 

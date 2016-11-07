@@ -41,14 +41,14 @@
 
 	if($_COOKIE["loggedIn"]){
 		#Redirect browser
-		header("Location: http://wilfredwallis.com/csc210/profile.php"); 
+		header("Location: profile.php"); 
 		exit();
 	}
 	else{
 		#check user in database
 		if(authenticate($_POST["username"], $_POST["password"])){
 			#Redirect browser
-			header("Location: http://wilfredwallis.com/csc210/profile.php"); 
+			header("Location: profile.php"); 
 			exit();
 		}
 		else{

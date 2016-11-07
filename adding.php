@@ -10,17 +10,17 @@
 		<h2 class="center">Get started</h2>
 
 		<!-- html form --> 
-			<p id='message'> </p>
-			<form action="adding.php" method="post" <pre>
-			firstName <input type="text" name="firstName"><br>
-			lastName <input type="text" name="lastName"><br>
-			userName <input type="text" name="userName"><br>
-			email <input type="text" name="email"><br>
-			password <input type="password" name="password"><br>
-			age <input type="text" name="age"><br>
-			<input type="submit" value="ADD RECORD">
-			</pre></form>
-			</div>
+		<p id='message'> </p>
+		<form action="adding.php" method="post" <pre>
+		firstName <input type="text" name="firstName"><br>
+		lastName <input type="text" name="lastName"><br>
+		userName <input type="text" name="userName"><br>
+		email <input type="text" name="email"><br>
+		password <input type="password" name="password"><br>
+		age <input type="text" name="age"><br>
+		<input type="submit" value="ADD RECORD">
+		</pre></form>
+		</div>
 </body>
 </html>
 
