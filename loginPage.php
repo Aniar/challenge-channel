@@ -1,28 +1,33 @@
 <?php  #learning php,mysql + javascript was heavily used
-	require_once 'loginInfo.php'; #getting info to connect to the database
 
+	function authenticate($username, $password){
 
-	function authenticate($username, $password, $databaseInfo){
-		#new connection
-		$conn = new mysqli($databaseInfo->hostAddress, $databaseInfo->username, $databaseInfo->password, $databaseInfo->database); 
+	 	#getting info to connect to the database
+		require'loginInfo.php';
+
+		#new connection using login stored in "loginInfo.php"
+		$conn = new mysqli($hostAddress, $uname, $pword, $database);
 		if($conn->connect_error) die($conn->connect_error);
 
+		#set up query and post it to database
 		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
-		$stmt->bind_param("s", $username);
+		$stmt->bind_param("s", $username); #? replaced with $username
 		$stmt->execute();
+		if(!$stmt) die ($conn->error);
 
-		#get record and make into associative array
-		$stmt->bind_result($result);
+		#store result
+		$result = $stmt->get_result();
+		$stmt->fetch();
 
-		#should NEVER have multiple identical usernames
-		assert($stmt->num_rows==1);
+		#user not found or multiple identical usernames
+		if($result->num_rows != 1) return false;
 
 		$verified = false;
 
 		#verify password
 		if(password_verify($password, $result->fetch_assoc()['password'])){
 			#set cookie to remember login for 1 month on entire domain
-			setcookie("loggedIn", true, strtotime("+1 month"), "/")
+			setcookie("loggedIn", $username, strtotime("+1 month"), "/");
 			
 			$verified = true;
 		}
@@ -32,28 +37,22 @@
 		$conn->close();
 
 		return $verified;
-		}
+	}
 
 	if($_COOKIE["loggedIn"]){
-		echo "Already logged In!!!";
+		#Redirect browser
+		header("Location: http://wilfredwallis.com/csc210/profile.php"); 
+		exit();
 	}
 	else{
-		#create database login info object
-		$databaseLogin = new stdClass;
-		$databaseLogin->hostAddress =  $hostAddress;
-		$databaseLogin->database = $database;
-		$databaseLogin->username = $uname
-		$databaseLogin->password = $pword;
-
 		#check user in database
-		if(authenticate($_POST["username"], $_POST["password"], $databaseLogin)){
-			echo "Logged In!!!";
+		if(authenticate($_POST["username"], $_POST["password"])){
+			#Redirect browser
+			header("Location: http://wilfredwallis.com/csc210/profile.php"); 
+			exit();
 		}
 		else{
 			echo "Not logged in";
 		}
 	}
-
-	echo " HELLO";
-
 ?>
