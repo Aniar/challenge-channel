@@ -1,7 +1,9 @@
 function logOut(){
   createCookie('loggedIn', '', -1, '/');
+  window.location = "../logout.html"
 }
 
+function createCookie(name, value, expires, path, domain) { //taken from https://www.sitepoint.com/how-to-deal-with-cookies-in-javascript/
   var cookie = name + "=" + escape(value) + ";";
 
   if (expires) {

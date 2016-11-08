@@ -49,7 +49,8 @@
 		$lastName = get_post($conn, 'lastName');
 		$userName = get_post($conn, 'userName');
 		$email = get_post($conn, 'email');
-		$password = password_hash(get_post($conn, 'password'), PASSWORD_DEFAULT);
+		// $password = password_hash(get_post($conn, 'password'), PASSWORD_DEFAULT); #needs PHP 5.5
+		$password = get_post($conn, 'password');
 		$age = get_post($conn, 'age');
 		
 
