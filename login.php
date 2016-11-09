@@ -9,6 +9,7 @@
 			<h1>Challenge Channel</h1>
 			<h2>Back at it</h2>
 
+			<p id='message'> </p>
 			<form action="login.php"  method="post">
 			  Username:<br>
 			  <input type="text" name="username">
@@ -32,8 +33,22 @@
 		header("Location: profile.php"); 
 		exit();
 	}
-	elseif(!empty($_POST['username']) && !empty($_POST['password']){
-		authenticate();
+	elseif(!empty($_POST['username']) && !empty($_POST['password'])){
+		if(authenticate($_POST['username'], $_POST['password'])){
+			#Redirect browser
+			header("Location: profile.php"); 
+			exit();
+		}
+		else{
+			echo <<<_END
+			<script>
+			function msg() {
+			}
+			window.onload = msg;
+			</script>
+_END;
+#^no characters before or after this token
+		}
 	}
 
 	function authenticate($username, $password){
