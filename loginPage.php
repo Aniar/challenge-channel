@@ -25,8 +25,7 @@
 		$verified = false;
 
 		#verify password
-		// if(password_verify($password, $result->fetch_assoc()['password'])){ #needs PHP 5.5
-		if($password ==  $result->fetch_assoc()['password']){ #rawtext compare
+		if(password_verify($password, $result->fetch_assoc()['password'])){
 			#set cookie to remember login for 1 month on entire domain
 			setcookie("loggedIn", $username, strtotime("+1 month"), "/");
 			
