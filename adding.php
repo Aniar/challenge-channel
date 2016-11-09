@@ -12,12 +12,12 @@
 		<!-- html form --> 
 		<p id='message'> </p>
 		<form action="adding.php" method="post" <pre>
-		firstName <input type="text" name="firstName"><br>
-		lastName <input type="text" name="lastName"><br>
-		userName <input type="text" name="userName"><br>
-		email <input type="text" name="email"><br>
-		password <input type="password" name="password"><br>
-		age <input type="text" name="age"><br>
+		firstName <input type="text" class="validate" name="firstName"><br>
+		lastName <input type="text" class="validate" name="lastName"><br>
+		userName <input type="text" class="validate" name="userName"><br>
+		email <input type="text" class="validate" name="email"><br>
+		password <input type="password" class="validate" name="password"><br>
+		age <input type="text" class="validate" name="age"><br>
 		<input type="submit" value="ADD RECORD">
 		</pre></form>
 		</div>
@@ -27,12 +27,12 @@
 <?php
 
 	#main
-	if(isset($_POST['firstName']) &&
-		isset($_POST['lastName']) &&
-		isset($_POST['userName']) &&
-		isset($_POST['email']) &&
-		isset($_POST['password']) &&
-		isset($_POST['age']))
+	if(!empty($_POST['firstName']) &&
+		!empty($_POST['lastName']) &&
+		!empty($_POST['userName']) &&
+		!empty($_POST['email']) &&
+		!empty($_POST['password']) &&
+		!empty($_POST['age']))
 	{
 		addUser();
 	}
@@ -78,7 +78,7 @@
 		window.onload = msg;
 		</script>
 _END;
-#can't have leading characters
+#^no characters before or after this token
 	}
 
 	function get_post($database, $var){
@@ -110,7 +110,7 @@ _END;
 			window.onload = msg;
 			</script>
 _END;
-#can't have leading characters
+#^no characters before or after this token
 			return true;
 		}
 		return false;

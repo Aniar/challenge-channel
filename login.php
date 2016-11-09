@@ -1,4 +1,40 @@
-<?php  #learning php,mysql + javascript was heavily used
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Log In | Challenge Channel</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+	<body id="login">
+		<div class="box">
+			<h1>Challenge Channel</h1>
+			<h2>Back at it</h2>
+
+			<form action="login.php"  method="post">
+			  Username:<br>
+			  <input type="text" name="username">
+			  <br>
+			  Password:<br>
+			  <input type="password" name="password">
+			  <br><br>
+			  <input type="submit" value="Submit">
+			</form>
+
+			
+		</div>
+	</body>
+</html>
+
+<?php
+
+	#main
+	if($_COOKIE["loggedIn"]){
+		#Redirect browser
+		header("Location: profile.php"); 
+		exit();
+	}
+	elseif(!empty($_POST['username']) && !empty($_POST['password']){
+		authenticate();
+	}
 
 	function authenticate($username, $password){
 
@@ -37,22 +73,5 @@
 		$conn->close();
 
 		return $verified;
-	}
-
-	if($_COOKIE["loggedIn"]){
-		#Redirect browser
-		header("Location: profile.php"); 
-		exit();
-	}
-	else{
-		#check user in database
-		if(authenticate($_POST["username"], $_POST["password"])){
-			#Redirect browser
-			header("Location: profile.php"); 
-			exit();
-		}
-		else{
-			echo "Not logged in";
-		}
 	}
 ?>
