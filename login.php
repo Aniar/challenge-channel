@@ -43,6 +43,7 @@
 			echo <<<_END
 			<script>
 			function msg() {
+				document.getElementById("message").innerHTML = "Your username or password is incorrect!";
 			}
 			window.onload = msg;
 			</script>
