@@ -1,58 +1,47 @@
 <?php  #learning php,mysql + javascript was heavily used
+	require_once 'loginInfo.php'; #getting info to connect to the database
 
-	function authenticate($username, $password){
+  #new connection
+	$conn = new mysqli($hostAddress, $uname, $pword, $database); 
+	if($conn->connect_error) die($conn->connect_error);
 
-	 	#getting info to connect to the database
-		require'loginInfo.php';
+  #query data base with sql
+  $query = "select * FROM userInfo";
+  $result = $conn ->query($query);
+  if(!$result) die ($conn->error);
 
-		#new connection using login stored in "loginInfo.php"
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
 
-		#set up query and post it to database
-		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
-		$stmt->bind_param("s", $username); #? replaced with $username
-		$stmt->execute();
-		if(!$stmt) die ($conn->error);
+  $rows = $result->num_rows;
 
-		#store result
-		$result = $stmt->get_result();
-		$stmt->fetch();
+  $usernameInput = $_POST["username"];
+  $passwordInput = $_POST["password"];
 
-		#user not found or multiple identical usernames
-		if($result->num_rows != 1) return false;
 
-		$verified = false;
+  #going through all the username's
+  
+  for ($i=0; $i < $rows; $i++) { 
+    $result->data_seek($i);
+      
+       $temp = ($result->fetch_assoc()['userName']);
+    if($temp == $usernameInput){
+      $result->data_seek($i);
+  
+      $tempThree = $result->fetch_assoc()['password'];
+        if($tempThree == $passwordInput){
+            setcookie("loggedIn", $temp, strtotime("+1 month"), "/");
+            echo "<script> window.location = 'http://wilfredwallis.com/csc210/profile.php' </script>";
+            #YOU ARE LOGGED IN
+        } else {
+          echo "you have not got in";
+        }
+    }
 
-		#verify password
-		if(password_verify($password, $result->fetch_assoc()['password'])){
-			#set cookie to remember login for 1 month on entire domain
-			setcookie("loggedIn", $username, strtotime("+1 month"), "/");
-			
-			$verified = true;
-		}
+  }
+   echo "HELLO";
 
-		#cleanup
-		$stmt->close();
-		$conn->close();
+  $result->close();
+  $conn->close();
 
-		return $verified;
-	}
 
-	if($_COOKIE["loggedIn"]){
-		#Redirect browser
-		header("Location: profile.php"); 
-		exit();
-	}
-	else{
-		#check user in database
-		if(authenticate($_POST["username"], $_POST["password"])){
-			#Redirect browser
-			header("Location: profile.php"); 
-			exit();
-		}
-		else{
-			echo "Not logged in";
-		}
-	}
-?>
+
+?> 
