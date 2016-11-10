@@ -3,8 +3,9 @@
 		<meta charset="utf-8">
 		<title>Profile | Challenge Channel</title>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="logOut.js"></script>
-			<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="js/progressbar.js"></script>
 
@@ -12,7 +13,18 @@
 	<body>
 		<div class="container">
 
-		<?php include 'inc/nav.php';
+			<nav class="navbar">
+		<a href="#" class="navbar-brand"><img src="img/color-palette48.png" alt="Brand"></a>
+		<form class="navbar-form">
+			Search: <input type="text" name="searchbar">
+			<input type="submit">
+		</form>
+		<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Steph Warsh</a></p>
+		<button type="button" class="btn btn-default navbar-btn">Log Out</button>
+	</nav>
+	<hr>
+
+		<?php 
 
 		echo <<< _END
 		<h1>Challenge Channel</h1>
