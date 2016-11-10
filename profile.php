@@ -3,7 +3,7 @@
 		<meta charset="utf-8">
 		<title>Profile | Challenge Channel</title>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		<script src="js/logOut.js"></script>
+		<script >function logOut(){window.location = "../logout.html";}</script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="js/progressbar.js"></script>

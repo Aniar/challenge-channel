@@ -8,11 +8,10 @@
 		<div class="box">
 			<h1>You have been logged out!</h1>
 			<a href="login.php">Go back to page</a>
-			
-
-			
-
-			
 		</div>
 	</body>
 </html>
+
+<?php
+setcookie("loggedIn", "", time()-3600);
+?>
