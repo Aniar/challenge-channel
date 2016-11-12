@@ -10,12 +10,12 @@
 			<h2>Back at it</h2>
 
 			<p id='message'> </p>
-			<form action="login.php"  method="post">
+			<form action="#"  method="post">
 			  Username:<br>
-			  <input type="text" name="username">
+			  <input type="text" name="username" required>
 			  <br>
 			  Password:<br>
-			  <input type="password" name="password">
+			  <input type="password" name="password" required>
 			  <br><br>
 			  <input type="submit" value="Submit">
 			</form>

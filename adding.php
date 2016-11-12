@@ -11,16 +11,17 @@
 
 		<!-- html form --> 
 		<p id='message'> </p>
-		<form action="adding.php" method="post" <pre>
-		firstName <input type="text" class="validate" name="firstName"><br>
-		lastName <input type="text" class="validate" name="lastName"><br>
-		userName <input type="text" class="validate" name="userName"><br>
-		email <input type="text" class="validate" name="email"><br>
-		password <input type="password" class="validate" name="password"><br>
-		age <input type="text" class="validate" name="age"><br>
-		<input type="submit" value="ADD RECORD">
-		</pre></form>
-		</div>
+		<form action="#" method="post" <pre>
+			first name <input type="text" class="valid" name="firstName" required><br>
+			last name <input type="text" class="valid" name="lastName" required><br>
+			username <input type="text" class="valid" name="userName" required><br>
+			email <input type="email" class="valid" name="email" required><br>
+			password <input type="password" class="valid" name="password" required><br>
+			age <input type="number" class="valid" name="age" min="1" max="150" required><br>
+			<input type="submit" value="ADD RECORD">
+			</pre>
+		</form>
+	</div>
 </body>
 </html>
 
