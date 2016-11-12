@@ -32,10 +32,10 @@
 
 		$test = &$conn; // TODO remove
 		if(isConflict($test, 'userName', $userName)){
-			$errors['userName'] = "Sorry, that username is taken";
+			$errors['userName'] = "Username taken";
 		}
 		if(isConflict($test, 'email', $email)){
-			$errors['email'] = "Sorry, there is already an account associated with that email address";
+			$errors['email'] = "Email address already in use";
 		}
 		if(!empty($errors)){
 			$data['errors'] = $errors;

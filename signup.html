@@ -4,7 +4,7 @@
 	<title>Sign Up | Challenge Channel</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="js/addingAjax.js"></script>
+	<script src="js/signupRequest.js"></script>
 </head>
 <body id="signup">
 	<div class="box">
@@ -12,17 +12,31 @@
 		<h2 class="center">Get started</h2>
 
 		<!-- html form --> 
-		<p id='message'> </p>
-		<form action="#" method="post" <pre>
-			<label>First Name<input type="text" name="firstName" required></label><br>
-			<label>Last Name<input type="text" name="lastName" required></label><br>
-			<label>Username<input type="text" name="userName" required></label><br>
-			<label>Email<input type="email" name="email" required></label><br>
-			<label>Password<input type="password" name="password" required></label><br>
-			<label>Age<input type="number" name="age" min="1" max="15 0" required></label><br>
+		<form action="addUser.php" method="post" <pre>
+			<label>First Name
+				<input type="text" name="firstName" required>
+			</label><br>
+			<label>Last Name
+				<input type="text" name="lastName" required>
+			</label><br>
+			<label>Username
+				<input type="text" name="userName" required>
+				<span id="userName-error" class="error"></span>
+			</label><br>
+			<label>Email
+				<input type="email" name="email" required>
+				<span id="email-error" class="error"></span>
+			</label><br>
+			<label>Password
+				<input type="password" name="password" required>
+			</label><br>
+			<label>Age
+				<input type="number" name="age" min="1" max="15 0" required>
+			</label><br>
 			<input type="submit" value="ADD RECORD">
 			</pre>
 		</form>
+		<p id='message'></p>
 	</div>
 </body>
 </html>

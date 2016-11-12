@@ -21,7 +21,6 @@ nav li {
 }
 #message {
 	font-size: 24px;
-	color: red;
 }
 #login {
 	background: white url("../img/brooklyn-bridge.jpg") no-repeat fixed center;
@@ -111,4 +110,11 @@ progress::-webkit-progress-bar {
 
 progress::-webkit-progress-value {
     background-color: #329ad1;
+}
+
+/*
+Error on signup.html
+*/
+span.error{
+	color: red;
 }
