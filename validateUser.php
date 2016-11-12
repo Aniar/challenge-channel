@@ -1,33 +1,3 @@
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Log In | Challenge Channel</title>
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-	</head>
-	<body id="login">
-		<div class="box">
-			<h1>Challenge Channel</h1>
-			<h2>Back at it</h2>
-
-			<p id='message'> </p>
-			<form action="#"  method="post">
-			  <label>Username:<br>
-			  	<input type="text" name="username" required>
-			  </label>
-			  <br>
-			  <label>Password:<br>
-			  	<input type="password" name="password" required>
-			  </label>
-			  <br>
-			  <br>
-			  <input type="submit" value="Submit">
-			</form>
-
-			
-		</div>
-	</body>
-</html>
-
 <?php
 
 	#main
