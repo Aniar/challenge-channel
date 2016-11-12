@@ -11,12 +11,15 @@
 
 			<p id='message'> </p>
 			<form action="#"  method="post">
-			  Username:<br>
-			  <input type="text" name="username" required>
+			  <label>Username:<br>
+			  	<input type="text" name="username" required>
+			  </label>
 			  <br>
-			  Password:<br>
-			  <input type="password" name="password" required>
-			  <br><br>
+			  <label>Password:<br>
+			  	<input type="password" name="password" required>
+			  </label>
+			  <br>
+			  <br>
 			  <input type="submit" value="Submit">
 			</form>
 
