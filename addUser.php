@@ -1,6 +1,6 @@
 <?php
 
-	#main
+	# main
 	if(!empty($_POST['firstName']) &&
 		!empty($_POST['lastName']) &&
 		!empty($_POST['userName']) &&
@@ -15,10 +15,10 @@
 		$data = array();
 		$errors = array();
 
-		#getting info to connect to the database
+		# getting info to connect to the database
 		require'loginInfo.php';
 
-		#new connection using login stored in "loginInfo.php"
+		# new connection using login stored in "loginInfo.php"
 		$conn = new mysqli($hostAddress, $uname, $pword, $database);
 		if($conn->connect_error) die($conn->connect_error);
 
@@ -30,11 +30,10 @@
 		$age = get_post($conn, 'age');
 		
 
-		$test = &$conn; // TODO remove
-		if(isConflict($test, 'userName', $userName)){
+		if(isConflict($conn, 'userName', $userName)){
 			$errors['userName'] = "Username taken";
 		}
-		if(isConflict($test, 'email', $email)){
+		if(isConflict($conn, 'email', $email)){
 			$errors['email'] = "Email address already in use";
 		}
 		if(!empty($errors)){
@@ -43,9 +42,9 @@
 			return $data;
 		}
 
-		#insert into database
+		# insert into database
 
-		#set up query and post it to database
+		# set up query and post it to database
 		$stmt = $conn->prepare("INSERT INTO userInfo VALUES(?,?,?,?,?,?)");
 		$stmt->bind_param("ssssss", $firstName, $lastName, $userName, $email, $password, $age);
 		$stmt->execute();
@@ -65,19 +64,19 @@
 	# Check for database conflicts
 	function isConflict($database, $fieldName, $fieldValue){
 
-		#set up query and post it to database
+		# set up query and post it to database
 		$stmt = $database->prepare("SELECT * FROM userInfo WHERE $fieldName = ?");
 		$stmt->bind_param("s", $fieldValue);
 		$stmt->execute();
 		if(!$stmt) die ($database->error);
 
-		#store result
+		# store result
 		$result = $stmt->get_result();
 		$stmt->fetch();
 
 		$stmt->close();
 
-		// $fieldName already being used 
+		# $fieldName already being used 
 		if($result->num_rows > 0){
 			return true;
 		}
