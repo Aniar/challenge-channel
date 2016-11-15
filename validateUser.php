@@ -2,9 +2,10 @@
 
 	# main
 	if(!empty($_POST['username']) && !empty($_POST['password'])){
-		if(!authenticate($_POST['username'], $_POST['password'])){
+		if(!authenticate($_POST['username'], $_POST['password']))
 			$data['errors']['loginError'] = "Username or password is incorrect!";
-		}
+		else
+			$data['success'] = true;
 		echo json_encode($data);
 	}
 
