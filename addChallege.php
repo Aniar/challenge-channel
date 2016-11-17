@@ -27,7 +27,8 @@
 	
 	$query = "INSERT INTO challenges values('$goalOne','$goalTwo', '$goalThree', '$goalFour' , '$goalFive', '$goalSix', '$goalSeven', '$goalEight', '$goalNine', '$goalTen', '$numOfItems', '$title' , '$summary', '$currentTask')";
 	   	 		
-	$result = $conn->query($query);
-	if(!$result) die ("failed: ".$conn->error);
+	// $result = $conn->query($query);
+	// if(!$result) die ("failed: ".$conn->error);
+	echo json_encode($conn->query($query)); //return true/false
 
 ?>
