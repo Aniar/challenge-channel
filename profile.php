@@ -14,13 +14,13 @@
 		<div class="container">
 
 			<nav class="navbar">
-		<a href="#" class="navbar-brand"><img src="img/color-palette48.png" alt="Brand"></a>
+		<p class="navbar-brand"><a href="#">Challenge Channel</a></p>
 		<form class="navbar-form">
 			Search: <input type="text" name="searchbar">
 			<input type="submit">
 		</form>
 		<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Steph Warsh</a></p>
-		<button type="button" class="btn btn-default navbar-btn">Log Out</button>
+		<a href="logout.html"><button type="button" class="btn btn-default navbar-btn navbar-right">Log Out</button></a>
 	</nav>
 	<hr>
 
