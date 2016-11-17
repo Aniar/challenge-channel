@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Add Challenge | Challenge Channel</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="js/addChallengeRequest.js"></script>
+</head>
+<body>
+<form action="addChallege.php" action="post">
+	<!-- goals 1-10 -->
+	<label>One:<br>
+		<input type="text" name="goalOne" required><br>
+	</label>
+	<label>Two:<br>
+		<input type="text" name="goalTwo"><br>
+	</label>
+	<label>Three:<br>
+		<input type="text" name="goalThree"><br>
+	</label>
+	<label>Four:<br>
+		<input type="text" name="goalFour"><br>
+	</label>
+	<label>Five:<br>
+		<input type="text" name="goalFive"><br>
+	</label>
+	<label>Six:<br>
+		<input type="text" name="goalSix"><br>
+	</label>
+	<label>Seven:<br>
+		<input type="text" name="goalSeven"><br>
+	</label>
+	<label>Eight:<br>
+		<input type="text" name="goalEight"><br>
+	</label>
+	<label>Nine:<br>
+		<input type="text" name="goalNine"><br>
+	</label>
+	<label>Ten:<br>
+		<input type="text" name="goalTen"><br>
+	</label>
+	<!-- non goal info -->
+	<label>Number of items: <br>
+		<input type="number" name="numOfItems" min="1" max="10" required><br>
+	</label>
+	<label>Title: <br>
+		<input type="text" name="title" required><br>
+	</label>
+	<label>Summary <br>
+		<input type="text" name="summary"><br>
+	</label>
+	<input type="submit" value="submit">
+</form>
+
+<p class='error'></p>
+<p id='message'></p>
+
+</body>
+<html>
