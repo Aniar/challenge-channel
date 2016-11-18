@@ -8,7 +8,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			// get data from form
 			var formData = $(this).serialize();
 			// post to location designated in form
-			var postURL = $('form').attr('action');
+			var postURL = $(this).attr('action');
 
 			// process the form
 			$.ajax({
