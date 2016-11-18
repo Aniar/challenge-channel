@@ -65,9 +65,14 @@ _END
 		</div><!-- .current -->
 	</div><!-- .container -->
 
-		<input type="checkbox" id="complete" onClick="finishBar()"><label for="complete"> Task Complete?</label>
-			<section id="progressbar">
-				<progress class="progress" value="20" max="100"></progress><span>Progress</span>
-			</section>
+		<input id="exbar" type="text"
+          data-provide="slider"
+          data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          data-slider-ticks-labels='["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
+          data-slider-min="1"
+          data-slider-max="10"
+          data-slider-step="1"
+          data-slider-value="1"
+          data-slider-tooltip="hide" />
 	</body>
 </html>
