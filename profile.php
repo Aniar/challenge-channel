@@ -7,72 +7,83 @@
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="js/progressbar.js"></script>
+		<script src="js/insertChallenge.js"></script>
 
 	</head>
 	<body>
 		<div class="container">
 
-		<nav class="navbar">
-		<p class="navbar-brand"><a href="#">Challenge Channel</a></p>
-		<form class="navbar-form navbar-left">
-			<div class="form-group">
-				Search: <input type="text" name="searchbar">
-				<input type="submit" class="btn btn-default">
-			</div>
-		</form>
-		<div class="navbar-right">
-			<p class="navbar-text">Signed in as <a href="#" class="navbar-link">Steph Warsh</a> </p>
-			<a href="logout.php"><button type="button" class="btn btn-default navbar-btn">Log Out</button></a>
-		</div>
-	</nav>
+			<nav class="navbar">
+				<p class="navbar-brand"><a href="#">Challenge Channel</a></p>
+				<form class="navbar-form navbar-left">
+					<div class="form-group">
+						Search: <input type="text" name="searchbar">
+						<input type="submit" class="btn btn-default">
+					</div>
+				</form>
+				<div class="navbar-right">
+					<p class="navbar-text">Signed in as <a href="#" class="navbar-link">Steph Warsh</a> </p>
+					<a href="logout.php"><button type="button" class="btn btn-default navbar-btn">Log Out</button></a>
+				</div>
+			</nav>
 
-		<?php 
+			<?php 
 
-		echo <<< _END
-		<h1>Challenge Channel</h1>
-		<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
+			echo <<< _END
+			<h1>Challenge Channel</h1>
+			<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
 
-		<div class="user-info">
-			<!-- fill with list of user info and social network friends -->
-			<ul>
-				<li>firstname lastname</li>
-				<li>{$_COOKIE["loggedIn"]}</li>
-				<li># of friends</li>
-			</ul>
+			<div class="user-info">
+				<!-- fill with list of user info and social network friends -->
+				<ul>
+					<li>firstname lastname</li>
+					<li>{$_COOKIE["loggedIn"]}</li>
+					<li># of friends</li>
+				</ul>
 
-		</div><!-- .user-info -->
+			</div><!-- .user-info -->
 _END
-		?>
+			?>
 
-		<div class="profile-picture">
-			<!-- user's profile picture -->
-			<img src="img/user.png">
+			<div class="profile-picture">
+				<!-- user's profile picture -->
+				<img src="img/user.png">
 
-		</div><!-- .profile-picture -->
+			</div><!-- .profile-picture -->
 
-		<div class="completed">
-			<!-- user's completed/past challenges in a list -->
-			<ul>
-				<li>done</li>
-				<li>done</li>
-				<li>done</li>
-			</ul>
+			<div class="completed">
+				<!-- user's completed/past challenges in a list -->
+				<ul>
+					<li>done</li>
+					<li>done</li>
+					<li>done</li>
+				</ul>
 
-		</div><!-- .completed -->
+			</div><!-- .completed -->
 
-		<div class="current">
+			<div class="current">
 
-		</div><!-- .current -->
-	</div><!-- .container -->
+			</div><!-- .current -->
 
-		<input id="exbar" type="text"
-          data-provide="slider"
-          data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-          data-slider-ticks-labels='["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
-          data-slider-min="1"
-          data-slider-max="10"
-          data-slider-step="1"
-          data-slider-value="1"
-          data-slider-tooltip="hide" />
+			<form action="getChallenge.php" action="post" class="getChallenge">
+				<label>Challenge Title:<br>
+					<input type="text" name="title" required><br>
+				</label>
+				<input type="submit" value="Add Challenge">
+			</form>
+
+		</div><!-- .container -->
+		<div class="challenges">
+			<input id="exbar" type="text"
+	          data-provide="slider"
+	          data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+	          data-slider-ticks-labels='["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
+	          data-slider-min="1"
+	          data-slider-max="10"
+	          data-slider-step="1"
+	          data-slider-value="1"
+	          data-slider-tooltip="hide" />
+	    </div>
+
 	</body>
 </html>

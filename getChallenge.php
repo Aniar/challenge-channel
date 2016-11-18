@@ -1,7 +1,6 @@
 <?php
 
-	// getChallenge($_POST["title"]);
-	echo json_encode(getChallenge('Test'));
+	echo json_encode(getChallenge($_POST["title"]));
 
 	function getChallenge($name){
 	 	# getting info to connect to the database
