@@ -1,5 +1,29 @@
+h1, h2 {
+	font-family: 'Cabin', sans-serif;
+}
+
+article, aside {
+	display: inline-block;
+}
+
+article {
+	width: 70%;
+	padding: 10px;
+}
+
+aside {
+	width: 30%;
+	padding: 10px;
+}
+.container {
+	width: 70%;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
 .navbar {
 	width: 100%;
+	border-bottom: 1px solid black;
 }
 .right {
 	float: right;
@@ -59,6 +83,11 @@
 	text-decoration: none;
 	color: black;
 	font-family: Helvetica, sans-serif;
+}
+
+.profile-picture img {
+	max-height: 150px;
+	max-width: 150px;
 }
 
 .button {

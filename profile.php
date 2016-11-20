@@ -2,8 +2,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Profile | Challenge Channel</title>
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,700" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="js/progressbar.js"></script>
@@ -29,12 +31,18 @@
 				</div>
 			</nav>
 
+		
 			<?php 
 
 			echo <<< _END
 			<h1>Challenge Channel</h1>
 			<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
+		<aside>
+					<div class="profile-picture">
+				<!-- user's profile picture -->
+				<img src="img/user.png" alt="profile photo">
 
+			</div><!-- .profile-picture -->
 			<div class="user-info">
 				<!-- fill with list of user info and social network friends -->
 				<ul>
@@ -44,15 +52,11 @@
 				</ul>
 
 			</div><!-- .user-info -->
+			
 _END
 			?>
-
-			<div class="profile-picture">
-				<!-- user's profile picture -->
-				<img src="img/user.png">
-
-			</div><!-- .profile-picture -->
-
+		</aside><!--
+		--><article>
 			<div class="completed">
 				<!-- user's completed/past challenges in a list -->
 				<ul>
@@ -74,7 +78,7 @@ _END
 				<input type="submit" value="Add Challenge">
 			</form>
 
-		</div><!-- .container -->
+		
 		<div class="challenges">
 			<input id="exbar" type="text"
 	          data-provide="slider"
@@ -86,6 +90,7 @@ _END
 	          data-slider-value="1"
 	          data-slider-tooltip="hide" />
 	    </div>
-
+	    </article>
+	</div><!-- .container -->
 	</body>
 </html>
