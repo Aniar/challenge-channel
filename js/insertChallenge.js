@@ -36,6 +36,9 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 							"</ul>",
 							"</div>"
 						].join("\n"));
+						
+						var slider = new Slider("#exbar");
+						slider.setValue(data.currentTask);
 					}
 					else{
 						console.log("fuggg");
