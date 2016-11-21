@@ -79,7 +79,7 @@ _END
 			</form>
 
 		
-		<div class="challenges">
+		<div id="challenges">
 			<input id="exbar" type="text"
 	          data-provide="slider"
 	          data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"

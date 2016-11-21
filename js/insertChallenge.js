@@ -20,25 +20,15 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					// if validation error
 					if(data){
 						console.log(data);
-						$('.challenges').append([
-							"<div>"+data.title,
-							"<ul>",
-								"<li>"+data.goalOne+"</li>",
-								"<li>"+data.goalTwo+"</li>",
-								"<li>"+data.goalThree+"</li>",
-								"<li>"+data.goalFour+"</li>",
-								"<li>"+data.goalFive+"</li>",
-								"<li>"+data.goalSix+"</li>",
-								"<li>"+data.goalSeven+"</li>",
-								"<li>"+data.goalEight+"</li>",
-								"<li>"+data.goalNine+"</li>",
-								"<li>"+data.goalTen+"</li>",
-							"</ul>",
-							"</div>"
-						].join("\n"));
 						
-						var slider = new Slider("#exbar");
-						slider.setValue(data.currentTask);
+						var slider = new Slider("#exbar",{
+							'id': data.title,
+							'value': data.currentTask,
+						});
+						slider.on('change', function(change){
+							console.log(change.newValue);
+							// ajax request here
+						});
 					}
 					else{
 						console.log("fuggg");

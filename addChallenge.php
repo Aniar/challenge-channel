@@ -22,7 +22,7 @@
 	$numOfItems = $_POST["numOfItems"];
 	$title = $_POST["title"];
 	$summary = $_POST["summary"];
-	$currentTask = 0;
+	$currentTask = 1;
 
 	
 	$query = "INSERT INTO challenges values('$goalOne','$goalTwo', '$goalThree', '$goalFour' , '$goalFive', '$goalSix', '$goalSeven', '$goalEight', '$goalNine', '$goalTen', '$numOfItems', '$title' , '$summary', '$currentTask')";
