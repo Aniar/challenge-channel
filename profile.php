@@ -71,7 +71,7 @@ _END
 		<div id="challenges">
 			
 			<!-- nicer looking progress bar -->
-			<!-- <div class="barImage"><img src="http://placekitten.com/400/400"/></div> -->
+			<div class="barImage"><img src="http://placekitten.com/400/400"/></div>
 			
 			<input id="exbar" type="text"
 	          data-provide="slider"
@@ -83,6 +83,7 @@ _END
 	          data-slider-value="1"
 	          data-slider-tooltip="hide" />
 	    </div>
+	    <script src="js/tileprogressbar.js"></script>
 	     <script type="text/javascript">
 	    	$('.goalOne').css('display', 'none');
 			$('.goalTwo').css('display', 'none');
@@ -218,5 +219,4 @@ _END
 	    </article>
 	</div><!-- .container -->
 	</body>
-	<script src="js/tileprogressbar.js"></script>
 </html>
