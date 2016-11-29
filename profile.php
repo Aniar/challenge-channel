@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,700" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		
+		<link rel="stylesheet" type="text/css" href="css/progressBarStyles.css">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="js/progressbar.js"></script>
@@ -75,6 +75,9 @@ _END
 			<h3>Current Challenges</h3>
 		
 		<div id="challenges">
+			
+			<div class="barImage"><img src="http://placekitten.com/400/400"/></div>
+			
 			<input id="exbar" type="text"
 	          data-provide="slider"
 	          data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
@@ -220,4 +223,5 @@ _END
 	    </article>
 	</div><!-- .container -->
 	</body>
+	<script src="js/tileprogressbar.js"></script>
 </html>
