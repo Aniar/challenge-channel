@@ -45,11 +45,10 @@
 			</div><!-- .profile-picture -->
 			<div class="user-info">
 				<!-- fill with list of user info and social network friends -->
-				<ul>
-					<li>firstname lastname</li>
-					<li>{$_COOKIE["loggedIn"]}</li>
-					<li># of friends</li>
-				</ul>
+				firstname lastname<br />
+				{$_COOKIE["loggedIn"]}<br />
+				# of friends<br />
+				
 
 			</div><!-- .user-info -->
 			
@@ -57,20 +56,15 @@ _END
 			?>
 		</aside><!--
 		--><article>
-			<div class="completed">
-				<!-- user's completed/past challenges in a list -->
-				<ul>
-					<li>done</li>
-					<li>done</li>
-					<li>done</li>
-				</ul>
+			<h3>Completed Challenges</h3>
+			<!-- user's completed/past challenges in a list -->
+			<ul>
+				<li><a href="#">10 day minimalism challenge</a></li>
+				<li><a href="#">7 day squat challenge</a></li>
+				<li><a href="#">5 day smartphone detox</a></li>
+			</ul>
 
-			</div><!-- .completed -->
-
-			<div class="current">
-
-			</div><!-- .current -->
-
+			<h3>Start a New Challenge</h3>
 			<form action="getChallenge.php" action="post" class="getChallenge">
 				<label>Challenge Title:<br>
 					<input type="text" name="title" required><br>
@@ -78,6 +72,7 @@ _END
 				<input type="submit" value="Add Challenge">
 			</form>
 
+			<h3>Current Challenges</h3>
 		
 		<div id="challenges">
 			<input id="exbar" type="text"

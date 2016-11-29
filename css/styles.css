@@ -4,6 +4,7 @@ h1, h2 {
 
 article, aside {
 	display: inline-block;
+	vertical-align: top;
 }
 
 article {
