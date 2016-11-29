@@ -18,12 +18,12 @@
 
 			<nav class="navbar">
 				<p class="navbar-brand"><a href="#">Challenge Channel</a></p>
-				<!-- <form class="navbar-form navbar-left">
+				<form class="navbar-form navbar-left">
 					<div class="form-group">
 						Search: <input type="text" name="searchbar">
 						<input type="submit" class="btn btn-default">
 					</div>
-				</form> -->
+				</form>
 				<div class="navbar-right">
 					<p class="navbar-text">Signed in as <a href="#" class="navbar-link">Steph Warsh</a> </p>
 					<a href="logout.php"><button type="button" class="btn btn-default navbar-btn">Log Out</button></a>
@@ -35,8 +35,9 @@
 
 			echo <<< _END
 			<h1>Challenge Channel</h1>
+			<aside>
 			<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
-		<aside>
+		
 			<div class="user-info">
 				<!-- fill with list of user info and social network friends -->
 				firstname lastname<br />
