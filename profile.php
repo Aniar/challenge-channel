@@ -76,7 +76,8 @@ _END
 		
 		<div id="challenges">
 			
-			<div class="barImage"><img src="http://placekitten.com/400/400"/></div>
+			<!-- nicer looking progress bar -->
+			<!-- <div class="barImage"><img src="http://placekitten.com/400/400"/></div> -->
 			
 			<input id="exbar" type="text"
 	          data-provide="slider"
