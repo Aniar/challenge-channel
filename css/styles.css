@@ -142,3 +142,32 @@ Error on signup.html
 span.error{
 	color: red;
 }
+
+.barImage {
+    width: 400px;
+    height: 40px;
+    position: relative;
+}
+
+.tile { 
+    float: left;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -ms-transition: all .1s linear;
+    -o-transition: all .1s linear;
+}
+#op {
+  opacity: .5; 
+}
+
+#op:hover {
+  opacity: 1; 
+}
+
+#next {
+  opacity: .5; 
+}
+
+#next:hover {
+  opacity: 1; 
+}
