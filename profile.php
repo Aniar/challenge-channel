@@ -4,7 +4,7 @@
 		<title>Profile | Challenge Channel</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,700" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		
 		
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -12,7 +12,7 @@
 		<script src="js/insertChallenge.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.4.1/css/bootstrap-slider.min.css" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.4.1/bootstrap-slider.min.js"></script>
-
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
 		<div class="container">
@@ -69,7 +69,7 @@ _END
 				<label>Challenge Title:<br>
 					<input type="text" name="title" required><br>
 				</label>
-				<input type="submit" value="Add Challenge">
+				<input type="submit" value="Add Challenge" class="btn btn-default">
 			</form>
 
 			<h3>Current Challenges</h3>
