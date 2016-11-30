@@ -1,4 +1,26 @@
 <html>
+	<?php
+		# Leave if not logged in
+		if(!$_COOKIE["loggedIn"]){
+			# Redirect browser
+			header("Location: login.php"); 
+			exit();
+		}
+
+		# getting info to connect to the database
+		require'loginInfo.php';
+
+		# new connection using login stored in "loginInfo.php"
+		$conn = new mysqli($hostAddress, $uname, $pword, $database);
+		if($conn->connect_error) die($conn->connect_error);
+
+		# get user info based on username
+		$user = getUser($_COOKIE["loggedIn"], $conn);
+
+		$conn->close(); #close here for now
+
+
+	?>
 	<head>
 		<meta charset="utf-8">
 		<title>Profile | Challenge Channel</title>
@@ -25,30 +47,25 @@
 					</div>
 				</form>
 				<div class="navbar-right">
-					<p class="navbar-text">Signed in as <a href="#" class="navbar-link">Steph Warsh</a> </p>
+					<p class="navbar-text">Signed in as
+						<a href="#" class="navbar-link"><?php echo "{$user['userName']}"?></a>
+					</p>
 					<a href="logout.php"><button type="button" class="btn btn-default navbar-btn">Log Out</button></a>
 				</div>
 			</nav>
 
-		
-			<?php 
-
-			echo <<< _END
 			<h1>Challenge Channel</h1>
 			<aside>
-			<h2>User Profile</h2> <!-- we can use SQL to put the user's name here -->
+			<h2><?php echo "{$user['firstName']}"?>'s Profile</h2>
 		
 			<div class="user-info">
 				<!-- fill with list of user info and social network friends -->
-				firstname lastname<br />
-				{$_COOKIE["loggedIn"]}<br />
-				# of friends<br />
+				<?php echo "{$user['firstName']} {$user['lastName']}"?><br/>
+				<?php echo "{$user['userName']}"?><br/>
+				<!--# of friends<br /> -->
 				
 
 			</div><!-- .user-info -->
-			
-_END
-			?>
 		</aside><!--
 		--><article>
 			<h3>Completed Challenges</h3>
@@ -61,7 +78,7 @@ _END
 
 			<h3>Start a New Challenge</h3>
 			<form action="getChallenge.php" action="post" class="getChallenge">
-				<label>Challenge Title:<br>
+				<label>Enter Challenge Title:<br>
 					<input type="text" name="title" required><br>
 				</label>
 				<input type="submit" value="Add Challenge" class="btn btn-default">
@@ -221,3 +238,22 @@ _END
 	</div><!-- .container -->
 	</body>
 </html>
+
+<?php 
+
+	function getUser($username, $conn){
+		# set up query and post it to database
+		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
+		$stmt->bind_param("s", $username); #? replaced with $username
+		$stmt->execute();
+		if(!$stmt) die ($conn->error);
+
+		# store result
+		$result = $stmt->get_result();
+		$stmt->fetch();
+
+		$stmt->close();
+
+		return $result->fetch_assoc();
+	}
+?>
