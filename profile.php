@@ -81,7 +81,7 @@
 
 			<h3>Start a New Challenge</h3>
 			<form action="getChallenge.php" action="post" class="getChallenge">
-				<label>Enter Challenge Title:<br>
+				<label>Enter Challenge Identifier: (format is creator:title)<br>
 					<input type="text" name="title" required><br>
 				</label>
 				<input type="submit" value="Add Challenge" class="btn btn-default">

@@ -11,7 +11,12 @@
 	#non task stuff
 	$summary = $_POST['summary'];
 	$numTasks = $_POST['numTasks'];
-	$title = $_POST['title'];
+	if($_COOKIE["loggedIn"])
+		$title = $_COOKIE['loggedIn'].$_POST['title'];
+	else{ //Must be logged in to create challenge
+		echo json_encode(false);
+		die();
+	}
 
 	#get all tasks
 	$tasks = $_POST['task'];
