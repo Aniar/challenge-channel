@@ -45,10 +45,10 @@
 		# insert into database
 
 		# set up query and post it to database
-		$stmt = $conn->prepare("INSERT INTO userInfo VALUES(?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $firstName, $lastName, $userName, $email, $password, $age);
+		$stmt = $conn->prepare("INSERT INTO userInfo VALUES(?,?,?,?,?,?,NULL)");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param("sssssi", $firstName, $lastName, $userName, $email, $password, $age); # 's' means string, 'i' is integer
 		$stmt->execute();
-		if(!$stmt) die ($conn->error);
 
 		$stmt->close();
 		$conn->close();
@@ -66,9 +66,9 @@
 
 		# set up query and post it to database
 		$stmt = $database->prepare("SELECT * FROM userInfo WHERE $fieldName = ?");
+		if(!$stmt) die($database->error);
 		$stmt->bind_param("s", $fieldValue);
 		$stmt->execute();
-		if(!$stmt) die ($database->error);
 
 		# store result
 		$result = $stmt->get_result();
