@@ -3,32 +3,32 @@
 
   	#new connection
 	$conn = new mysqli($hostAddress, $uname, $pword, $database); 
-	if($conn->connect_error) die($conn->connect_error);
+	if($conn->connect_error){
+		echo json_encode(false);
+		die();
+	}
 
-	#goals 1-10
-	$goalOne = $_POST["goalOne"];
-	$goalTwo = $_POST["goalTwo"];
-	$goalThree = $_POST["goalThree"];
-	$goalFour = $_POST["goalFour"];
-	$goalFive = $_POST["goalFive"];
-	$goalSix = $_POST["goalSix"];
-	$goalSeven = $_POST["goalSeven"];
-	$goalEight = $_POST["goalEight"];
-	$goalNine = $_POST["goalNine"];
-	$goalTen = $_POST["goalTen"];
+	#non task stuff
+	$summary = $_POST['summary'];
+	$numTasks = $_POST['numTasks'];
+	$title = $_POST['title'];
 
-	#non goal stuff
+	#get all tasks
+	$tasks = $_POST['task'];
 
-	$numOfItems = $_POST["numOfItems"];
-	$title = $_POST["title"];
-	$summary = $_POST["summary"];
-	$currentTask = 1;
+	# set up query and post it to database
+	$stmt = $conn->prepare("INSERT INTO challenges VALUES(?,?,?,?,1)");
+	if(!$stmt){
+		echo json_encode(false);
+		die();
+	}
+	$stmt->bind_param("ssbi", $title, $summary, $tasks, $numTasks); # 's' means string, 'b' is blob, 'i' is integer
+	$stmt->send_long_data(2, serialize($tasks)); #have to send blobs this way as they may be super big
+	$stmt->execute();
 
-	
-	$query = "INSERT INTO challenges values('$goalOne','$goalTwo', '$goalThree', '$goalFour' , '$goalFive', '$goalSix', '$goalSeven', '$goalEight', '$goalNine', '$goalTen', '$numOfItems', '$title' , '$summary', '$currentTask')";
-	   	 		
-	// $result = $conn->query($query);
-	// if(!$result) die ("failed: ".$conn->error);
-	echo json_encode($conn->query($query)); //return true/false
+	$stmt->close();
+	$conn->close();
+
+	echo json_encode(true);
 
 ?>
