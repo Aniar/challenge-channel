@@ -6,7 +6,7 @@
 
 
 h1, h2 {
-	font-family: 'Cabin', sans-serif;
+	font-family: 'Cabin', Helvetica, sans-serif;
 }
 
 article, aside {
@@ -44,30 +44,29 @@ aside {
 .right {
 	float: right;
 }
+
 .user-info {
 	padding: 10px;
 }
 
-/* PAGES */
+/*
+ * 
+ * PAGES
+ *
+ */
+
 #home {
 	background: white url("../img/color-run.jpg") no-repeat fixed center;
 	background-size: cover;
 	position: relative;
 	height: 100vh;
 }
-#message {
-	font-size: 24px;
-}
+
 #login {
 	background: white url("../img/brooklyn-bridge.jpg") no-repeat fixed center;
 	background-size: 100%;
 	position: relative;
 	font-family: Helvetica, sans-serif;
-}
-#login ul, #signup ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 }
 
 #signup {
@@ -77,10 +76,26 @@ aside {
 	font-family: Helvetica, sans-serif;
 }
 
+#login ul, #signup ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#message {
+	font-size: 24px;
+}
+
+/*
+ *
+ * THEMES
+ * 
+ */
+
 .center {
 	text-align: center;
 }
-/* THEMES */
+
 .box {
 	background-color: rgba(255,255,255,0.7);
 	border-radius: 25px;
@@ -95,7 +110,7 @@ aside {
 .box h1 {
 	color: black;
 	font-size: 3em;
-	font-family: Helvetica, sans-serif;
+	font-family: 'Cabin', Helvetica, sans-serif;
 	font-weight: bold;
 	text-shadow: 0px 0px 3px rgba(255,255,255,.5);
 }
@@ -106,23 +121,12 @@ aside {
 	font-family: Helvetica, sans-serif;
 }
 
-.button {
-	display: inline-block;
-	text-align: center;
-	padding: 0.5em 2em .55em;
-	background: gray; /* for browsers that don't support gradient */
-	background: -webkit-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%); /* safari */
-	background: -moz-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%); /* firefox */
-	background: -o-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%); /* opera */
-	background: -ms-linear-gradient(top, #a9a9a9 31%, #d3d3d3 100%); /* edge */
-	background: linear-gradient(to bottom, #a9a9a9 31%, #d3d3d3 100%);
-
-	border-radius: 25px;
-	border: 1px solid gray;
-
-	box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
-}
-/* VENDORS */
+/*
+ *
+ * VENDORS
+ *
+ */
+ 
 #progressbar span {
     top: -30px;
     left: 2%;
