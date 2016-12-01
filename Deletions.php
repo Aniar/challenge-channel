@@ -8,20 +8,19 @@
 		if($conn->connect_error) die($conn->connect_error);
 
 		# get user info based on username
-		$user = "testUser";
-		//getUser($_COOKIE["loggedIn"], $conn);
+		$user = getUser($_COOKIE["loggedIn"], $conn);
 
 		
 
 
 		#Delete account
-		$query = "DELETE FROM userInfo WHERE userName='zoe21'";
+		$query = "DELETE FROM userInfo WHERE userName='$user'";
 		$result = $conn->query($query);
 		if(!$result){
 		      die($conn->error);
 		}
 
-		echo $query;
+		
 
 		function getUser($username, $conn){
 		# set up query and post it to database

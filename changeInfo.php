@@ -8,8 +8,7 @@
 		if($conn->connect_error) die($conn->connect_error);
 
 		# get user info based on username
-		$user = 'wwallisabc';
-		//getUser($_COOKIE["loggedIn"], $conn);
+		$user = getUser($_COOKIE["loggedIn"], $conn);
 
 		if(isset($_POST['fname'])){
 			//first name
