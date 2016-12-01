@@ -1,15 +1,5 @@
 <?php
-
-	echo json_encode(getChallenge($_POST["title"]));
-
-	function getChallenge($name){
-	 	# getting info to connect to the database
-		require'loginInfo.php';
-
-		# new connection using login stored in "loginInfo.php"
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
-
+	function getChallenge($name, $conn){
 		# set up query and post it to database
 		$stmt = $conn->prepare("SELECT * FROM challenges WHERE title = ?");
 		if(!$stmt) die ($conn->error);
@@ -22,5 +12,4 @@
 
 		return $result->fetch_assoc();
 	}
-
 ?>
