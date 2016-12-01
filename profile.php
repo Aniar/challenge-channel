@@ -39,7 +39,7 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container main">
 
 			<nav class="navbar">
 				<p class="navbar-brand"><a href="#">Challenge Channel</a></p>
@@ -238,7 +238,7 @@
 
 ?>
 	    </article>
-	</div><!-- .container -->
+	</div><!-- .container .main -->
 	</body>
 </html>
 
