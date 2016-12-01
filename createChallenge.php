@@ -17,7 +17,7 @@
 	$tasks = $_POST['task'];
 
 	# set up query and post it to database
-	$stmt = $conn->prepare("INSERT INTO challenges VALUES(?,?,?,?,1)");
+	$stmt = $conn->prepare("INSERT INTO challenges VALUES(?,?,?,?)");
 	if(!$stmt){
 		echo json_encode(false);
 		die();
