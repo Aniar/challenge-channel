@@ -20,9 +20,9 @@
 
 		# set up query and post it to database
 		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
+		if(!$stmt) die ($conn->error);
 		$stmt->bind_param("s", $username); #? replaced with $username
 		$stmt->execute();
-		if(!$stmt) die ($conn->error);
 
 		# store result
 		$result = $stmt->get_result();
