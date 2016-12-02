@@ -12,7 +12,7 @@
 	updateDetails($username, 'firstName', "s", $conn);
 	updateDetails($username, 'lastName', "s", $conn);
 	updateDetails($username, 'age', "i", $conn);
-	updateDetails($username, 'email', "s", $conn);
+	updateDetails($username, 'email', "s", $conn); //TODO check for conflicts here
 	updateDetails($username, 'password', "s", $conn);
 
 	$conn->close();
