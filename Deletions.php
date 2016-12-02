@@ -1,41 +1,19 @@
 <?php
 
 	# getting info to connect to the database
-		require'loginInfo.php';
+	require'loginInfo.php';
 
-		# new connection using login stored in "loginInfo.php"
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
+	# new connection using login stored in "loginInfo.php"
+	$conn = new mysqli($hostAddress, $uname, $pword, $database);
+	if($conn->connect_error) die($conn->connect_error);
 
-		# get user info based on username
-		$user = getUser($_COOKIE["loggedIn"], $conn);
+	//TODO error on not logged in
+	# get username
+	$username = $_COOKIE["loggedIn"];
 
-		$conn->close(); #close here for now
-
-
-		#Delete account
-		$query = "DELETE FROM userInfo WHERE userName=$user;";
-		$result = $conn->query($query);
-		if(!$result){
-		      die($conn->error);
-		}
-
-		function getUser($username, $conn){
-		# set up query and post it to database
-		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
-		$stmt->bind_param("s", $username); #? replaced with $username
-		$stmt->execute();
-		if(!$stmt) die ($conn->error);
-
-		# store result
-		$result = $stmt->get_result();
-		$stmt->fetch();
-
-		$stmt->close();
-
-		return $result->fetch_assoc();
-		}
-
-
-
+	#Delete account
+	$stmt = $conn->prepare("DELETE FROM userInfo WHERE userName=?");
+	if(!$stmt) die ($conn->error);
+	$stmt->bind_param("s", $username); #? replaced with $username
+	$stmt->execute();
 ?>
