@@ -9,51 +9,27 @@
 
 	# get username
 	$username = $_COOKIE["loggedIn"];
+	updateDetails($username, 'firstName', "s", $conn);
+	updateDetails($username, 'lastName', "s", $conn);
+	updateDetails($username, 'age', "i", $conn);
+	updateDetails($username, 'email', "s", $conn);
+	updateDetails($username, 'password', "s", $conn);
 
-	if(!empty($_POST['fname'])){
-		# first name
-		$fname = $_POST['fname'];
+	$conn->close();
 
-		$stmt = $conn->prepare("UPDATE userInfo SET firstName=? WHERE userName=?");
-		if(!$stmt) die($conn->error);
-		$stmt->bind_param("ss", $fname, $username); # 's' means string
-		$stmt->execute();
+	function updateDetails($username, $field, $type, $conn){
+		if(!empty($_POST[$field])){
+			$value = $_POST[$field];
+			if($field=='password')
+				$value = password_hash($_POST[$field], PASSWORD_DEFAULT);
 
-	} else if (!empty($_POST['lname'])) {
-		# last name
-		$lname = $_POST['lname'];
-		
-		$stmt = $conn->prepare("UPDATE userInfo SET lastName=? WHERE userName=?");
-		if(!$stmt) die($conn->error);
-		$stmt->bind_param("ss", $lname, $username); # 's' means string
-		$stmt->execute();
+			$stmt = $conn->prepare("UPDATE userInfo SET $field=? WHERE userName=?");
+			if(!$stmt) die($conn->error);
+			$stmt->bind_param($type."s", $value, $username); # 's' means string
+			$stmt->execute();
 
-	} else if (!empty($_POST['age'])){
-		# age
-		$age = $_POST['age'];
-		
-		$stmt = $conn->prepare("UPDATE userInfo SET age=? WHERE userName=?");
-		if(!$stmt) die($conn->error);
-		$stmt->bind_param("is", $age, $username); # 'i' means integer, 's' means string
-		$stmt->execute();
-
-	} else if (!empty($_POST['email'])){
-		# email
-		$email = $_POST['email'];
-		
-		$stmt = $conn->prepare("UPDATE userInfo SET email=? WHERE userName=?");
-		if(!$stmt) die($conn->error);
-		$stmt->bind_param("ss", $email, $username); # 's' means string
-		$stmt->execute();
-
-	} else if (!empty($_POST['password'])){
-		# password
-		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-		
-		$stmt = $conn->prepare("UPDATE userInfo SET password=? WHERE userName=?");
-		if(!$stmt) die($conn->error);
-		$stmt->bind_param("ss", $password, $username); # 's' means string
-		$stmt->execute();
+			$stmt->close();
+		}
 	}
 
 ?>
