@@ -1,6 +1,6 @@
 <html>
 <head> 
-	<title>edit info</title>
+	<title>Settings | Challenge Channel</title>
 </head>
 <body>
 	<form action="changeInfo.php" method="post">
@@ -17,18 +17,23 @@
 	<hr>
 	<form action="changeInfo.php" method="post">
 		<p>age</p>
-		<input type="text" name="age">
+		<input type="number" name="age" min="1" max="150">
 		<input type="submit" value="Submit">
 	</form>
 	<hr>
 	<form action="changeInfo.php" method="post">
 		<p>password</p>
-		<input type="text" name="password">
+		<input type="email" name="email">
+		<input type="submit" value="Submit">
+	</form>
+	<hr>
+	<form action="changeInfo.php" method="post">
+		<p>password</p>
+		<input type="password" name="password">
 		<input type="submit" value="Submit">
 	</form>
 
-
-
-	</form>
+	<p id='message'></p>
+	
 </body>
 </html>
