@@ -7,59 +7,53 @@
 	$conn = new mysqli($hostAddress, $uname, $pword, $database);
 	if($conn->connect_error) die($conn->connect_error);
 
-	# get user info based on username
-	$user = 'wwallisabc';
-	//getUser($_COOKIE["loggedIn"], $conn);
+	# get username
+	$username = $_COOKIE["loggedIn"];
 
-	if(isset($_POST['fname'])){
-		//first name
-		# new connection using login stored in "loginInfo.php"
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
+	if(!empty($_POST['fname'])){
+		# first name
 		$fname = $_POST['fname'];
 
-		$query = "UPDATE userInfo SET firstName='$fname' WHERE userName='wwallisabc';";
-		$result = $conn->query($query);
-		if(!$result){
-		      die($conn->error);
-		}
+		$stmt = $conn->prepare("UPDATE userInfo SET firstName=? WHERE userName=?");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param("ss", $fname, $username); # 's' means string
+		$stmt->execute();
 
-	} else if (isset($_POST['lname'])) {
-		//last name
-		$fname = $_POST['lname'];
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
+	} else if (!empty($_POST['lname'])) {
+		# last name
+		$lname = $_POST['lname'];
 		
-		
-		$query = "UPDATE userInfo SET lastName='$lname' WHERE userName='wwallisabc';";
-		$result = $conn->query($query);
-		if(!$result){
-		      die($conn->error);
-		}
+		$stmt = $conn->prepare("UPDATE userInfo SET lastName=? WHERE userName=?");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param("ss", $lname, $username); # 's' means string
+		$stmt->execute();
 
-	} else if (isset($_POST['age'])){
-		//age
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
+	} else if (!empty($_POST['age'])){
+		# age
 		$age = $_POST['age'];
 		
-		$query = "UPDATE userInfo SET age='$age' WHERE userName='wwallisabc';";
-		$result = $conn->query($query);
-		if(!$result){
-		      die($conn->error);
-		}
+		$stmt = $conn->prepare("UPDATE userInfo SET age=? WHERE userName=?");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param("is", $age, $username); # 'i' means integer, 's' means string
+		$stmt->execute();
 
-	} else if (isset($_POST['password'])){
-		//password
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
-		$password = $_POST['password'];
+	} else if (!empty($_POST['email'])){
+		# email
+		$email = $_POST['email'];
 		
-		$query = "UPDATE userInfo SET password='$password' WHERE userName='wwallisabc';";
-		$result = $conn->query($query);
-		if(!$result){
-		      die($conn->error);
-		}
+		$stmt = $conn->prepare("UPDATE userInfo SET email=? WHERE userName=?");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param("ss", $email, $username); # 's' means string
+		$stmt->execute();
+
+	} else if (!empty($_POST['password'])){
+		# password
+		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		
+		$stmt = $conn->prepare("UPDATE userInfo SET password=? WHERE userName=?");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param("ss", $password, $username); # 's' means string
+		$stmt->execute();
 	}
 
 ?>
