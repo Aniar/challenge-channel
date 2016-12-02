@@ -178,22 +178,22 @@
 
 	$challenges = unserialize($user['challenges']);
 	if($challenges){
-			foreach ($challenges as $title => $currentTask){
-				# get challenge info
-				$challengeData = getChallenge($title, $conn);
-				# generate ticks and labels as an array and convert to string
-				$ticks = "[".implode(",",range(1,$challengeData['numTasks']))."]";
-				echo"<input id='{$title}' type='text' class='challenge'
-					data-provide='slider'
-					data-slider-min='1'
-					data-slider-max='{$challengeData['numTasks']}'
-					data-slider-step='1'
-					data-slider-value='{$currentTask}';
-					data-slider-ticks={$ticks}
-					data-slider-ticks-labels={$ticks}
-					data-slider-tooltip='hide' />";
-			}
-			unset($currentTask); # required after foreach loop
+		foreach ($challenges as $title => $currentTask){
+			# get challenge info
+			$challengeData = getChallenge($title, $conn);
+			# generate ticks and labels as an array and convert to string
+			$ticks = "[".implode(",",range(1,$challengeData['numTasks']))."]";
+			echo"<input id='{$title}' type='text' class='challenge'
+				data-provide='slider'
+				data-slider-min='1'
+				data-slider-max='{$challengeData['numTasks']}'
+				data-slider-step='1'
+				data-slider-value='{$currentTask}';
+				data-slider-ticks={$ticks}
+				data-slider-ticks-labels={$ticks}
+				data-slider-tooltip='hide' />";
+		}
+		unset($currentTask); # required after foreach loop
 	}
 
 	// require_once('loginInfo.php');
