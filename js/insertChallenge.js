@@ -1,7 +1,7 @@
 $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitting-ajax-forms-with-jquery
 
 		// process the form
-		$('form.getChallenge').submit(function(event) {
+		$('form.bindChallenge').submit(function(event) {
 
 			// get data from form
 			var formData = $(this).serialize();
@@ -17,18 +17,16 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				encode		: true
 			})
 				.done(function(data) { //on ajax success
-					// if validation error
 					if(data){
-						console.log(data);
-						
 						var slider = new Slider("#exbar",{
 							'id': data.title,
-							'value': data.currentTask,
+							'ticks': data.ticks,
+							'ticks_labels': data.ticks_labels
 						});
-						slider.on('change', function(change){
-							console.log(change.newValue);
-							// ajax request here
-						});
+						// slider.on('change', function(change){
+						// 	console.log(change.newValue);
+						// 	// ajax request here
+						// });
 					}
 					else{
 						console.log("fuggg");
@@ -39,4 +37,25 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			event.preventDefault();
 		});
 
+
+		$('input.challenge').change(function(){
+
+			challenge = "title="+$(this).attr('id');
+			newValue = "newValue="+$(this).val();
+			data = challenge+"&"+newValue;
+
+			//add title
+
+			$.ajax({
+				type 		: 'POST', // post request
+				url 		: 'updateCurrentTask.php', // php file to handle the post
+				data 		: data, // data to be sent
+				dataType 	: 'json', // data type expected back
+				encode		: true
+			})
+				.done(function(data) { //on ajax success
+					if(data)
+						console.log("Database updated");
+				});
+		});
 });
