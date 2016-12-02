@@ -23,10 +23,9 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 							'ticks': data.ticks,
 							'ticks_labels': data.ticks_labels
 						});
-						// slider.on('change', function(change){
-						// 	console.log(change.newValue);
-						// 	// ajax request here
-						// });
+						slider.on('change', function(change){ // make new challenge update database on change
+							updateCurrentTask(data.title, change.newValue);
+						});
 					}
 					else{
 						console.log("fuggg");
@@ -37,19 +36,23 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			event.preventDefault();
 		});
 
+		if($('input.challenge').length > 0){ // make cached challenges update database on change
+			$('input.challenge').change(function(){
+				updateCurrentTask($(this).attr('id'),$(this).val());
+			});
+		}
 
-		$('input.challenge').change(function(){
 
-			challenge = "title="+$(this).attr('id');
-			newValue = "newValue="+$(this).val();
-			data = challenge+"&"+newValue;
+		function updateCurrentTask(id, value){
+
+			var updateData = "title="+id+"&"+"newValue="+value;
 
 			//add title
 
 			$.ajax({
 				type 		: 'POST', // post request
 				url 		: 'updateCurrentTask.php', // php file to handle the post
-				data 		: data, // data to be sent
+				data 		: updateData, // data to be sent
 				dataType 	: 'json', // data type expected back
 				encode		: true
 			})
@@ -57,5 +60,5 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					if(data)
 						console.log("Database updated");
 				});
-		});
+		}
 });

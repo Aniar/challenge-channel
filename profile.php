@@ -78,7 +78,7 @@
 			</ul>
 
 			<h3>Start a New Challenge</h3>
-			<form action="bindChallenge.php" action="post" class="bindChallenge">
+			<form action="bindChallenge.php" method="post" class="bindChallenge">
 				<label>Enter Challenge Identifier: (format is creator:title)<br>
 					<input type="text" name="title" required><br>
 				</label>
