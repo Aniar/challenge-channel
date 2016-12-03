@@ -3,6 +3,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		// process the form
 		$('form').submit(function(event) {
 
+			$('#message').text(""); // clear message text
 			$('.error').text(""); // clear error text
 
 			// get data from form
