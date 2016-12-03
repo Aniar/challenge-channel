@@ -7,29 +7,29 @@
 	$conn = new mysqli($hostAddress, $uname, $pword, $database);
 	if($conn->connect_error) die($conn->connect_error);
 
+	//TODO error handling when not logged in
 	# get username
-	$username = $_COOKIE["loggedIn"];
-	updateDetails($username, 'firstName', "s", $conn);
-	updateDetails($username, 'lastName', "s", $conn);
-	updateDetails($username, 'age', "i", $conn);
-	updateDetails($username, 'email', "s", $conn); //TODO check for conflicts here
-	updateDetails($username, 'password', "s", $conn);
+	$username = $_COOKIE['loggedIn'];
+	# get fieldname
+	$field = $_POST['name'];
 
-	$conn->close();
+	if(!empty($_POST[$field])){
+		$value = $_POST[$field];
+		$type = "s";
+		if($field=='password')
+			$value = password_hash($_POST[$field], PASSWORD_DEFAULT);
+		else if($field=='age')
+			$type = "i";
 
-	function updateDetails($username, $field, $type, $conn){
-		if(!empty($_POST[$field])){
-			$value = $_POST[$field];
-			if($field=='password')
-				$value = password_hash($_POST[$field], PASSWORD_DEFAULT);
+		$stmt = $conn->prepare("UPDATE userInfo SET $field=? WHERE userName=?");
+		if(!$stmt) die($conn->error);
+		$stmt->bind_param($type."s", $value, $username); # 's' means string
+		$stmt->execute();
 
-			$stmt = $conn->prepare("UPDATE userInfo SET $field=? WHERE userName=?");
-			if(!$stmt) die($conn->error);
-			$stmt->bind_param($type."s", $value, $username); # 's' means string
-			$stmt->execute();
+		$stmt->close();
+		$conn->close();
 
-			$stmt->close();
-		}
+		echo json_encode(true);
 	}
 
 ?>
