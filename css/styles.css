@@ -150,6 +150,10 @@ nav {
 	display: block;
 }
 
+.navbar {
+	border-radius: 0px;
+}
+
 /*
  *
  * VENDORS
