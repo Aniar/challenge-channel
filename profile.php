@@ -17,10 +17,10 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body id="profile">
+		<?php include 'inc/nav.php'; ?>
 		<div class="container main">
 
 			<?php
-				include 'inc/nav.php'
 
 				# getting info to connect to the database
 				require'loginInfo.php';
