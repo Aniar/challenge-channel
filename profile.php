@@ -1,11 +1,5 @@
 <html>
 	<?php
-		# Redirect to login page if not logged in
-		if(!$_COOKIE['loggedIn']){
-			# Redirect browser
-			header('Location: login.php'); 
-			exit();
-		}
 
 		# getting info to connect to the database
 		require'loginInfo.php';

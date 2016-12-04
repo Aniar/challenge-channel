@@ -24,7 +24,7 @@
 			<label>Title: <br>
 				<input type="text" name="title" required><br>
 			</label>
-			<label>Summary <br>
+			<label>Summary: <br>
 				<input type="text" name="summary"><br>
 			</label>
 			<label>Number of tasks: <br>
