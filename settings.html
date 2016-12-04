@@ -1,0 +1,46 @@
+<html>
+<head> 
+	<title>Settings | Challenge Channel</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="js/changeInfoRequest.js"></script>
+</head>
+<body>
+	<form action="changeInfo.php" method="post">
+		<label>First Name <br>
+			<input type="text" name="firstName">
+		</label>
+		<input type="submit" value="Submit">
+	</form>
+	<hr>
+	<form action="changeInfo.php" method="post">
+		<label>Last Name <br>
+			<input type="text" name="lastName">
+		</label>
+		<input type="submit" value="Submit">
+	</form>
+	<hr>
+	<form action="changeInfo.php" method="post">
+		<label>Age <br>
+			<input type="number" name="age" min="1" max="150">
+		</label>
+		<input type="submit" value="Submit">
+	</form>
+	<hr>
+	<form action="changeInfo.php" method="post">
+		<label>Email <br>
+			<input type="email" name="email">
+		</label>
+		<input type="submit" value="Submit">
+	</form>
+	<hr>
+	<form action="changeInfo.php" method="post">
+		<label>Password <br>
+			<input type="password" name="password">
+		</label>
+		<input type="submit" value="Submit">
+	</form>
+
+	<p id='message'></p>
+	
+</body>
+</html>

@@ -14,6 +14,5 @@ CREATE TABLE IF NOT EXISTS `challenges` (
   `title` varchar(255) PRIMARY KEY,
   `summary` text,
   `tasks` blob,
-  `numTasks` tinyint(3) unsigned,
-  `currentTask` tinyint(3) unsigned DEFAULT '1'
+  `numTasks` tinyint(3) unsigned
 );

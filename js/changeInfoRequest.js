@@ -8,6 +8,10 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 
 			// get data from form
 			var formData = $(this).serialize();
+			// field being updated
+			var field = $(this).find('input:first').attr('name');
+			formData += "&name="+field;
+
 			// post to location designated in form
 			var postURL = $(this).attr('action');
 
@@ -22,10 +26,10 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				.done(function(data) { //on ajax success
 					// if validation error
 					if(data)
-						$('#message').text("Challenge created!");
+						$('#message').text(field+" updated");
 					else
-						$('p.error').text("Error creating challenge.");
-				});
+						$('p.error').text("Error updating information");
+				}).fail(function(data){console.log(data);});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();
 		});

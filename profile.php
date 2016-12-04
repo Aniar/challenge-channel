@@ -1,9 +1,9 @@
 <html>
 	<?php
 		# Redirect to login page if not logged in
-		if(!$_COOKIE["loggedIn"]){
+		if(!$_COOKIE['loggedIn']){
 			# Redirect browser
-			header("Location: login.php"); 
+			header('Location: login.php'); 
 			exit();
 		}
 
@@ -15,9 +15,7 @@
 		if($conn->connect_error) die($conn->connect_error);
 
 		# get user info based on username
-		$user = getUser($_COOKIE["loggedIn"], $conn);
-
-		$conn->close(); #close here for now
+		$user = getUser($_COOKIE['loggedIn'], $conn);
 
 
 	?>
@@ -39,23 +37,9 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container main">
 
-			<nav class="navbar">
-				<p class="navbar-brand"><a href="#">Challenge Channel</a></p>
-				<form class="navbar-form navbar-left">
-					<div class="form-group">
-						Search: <input type="text" name="searchbar">
-						<input type="submit" class="btn btn-default">
-					</div>
-				</form>
-				<div class="navbar-right">
-					<p class="navbar-text">Signed in as
-						<a href="#" class="navbar-link"><?php echo "{$user['userName']}"?></a>
-					</p>
-					<a href="logout.php"><button type="button" class="btn btn-default navbar-btn">Log Out</button></a>
-				</div>
-			</nav>
+			<?php include 'inc/nav.php' ?>
 
 			<h1>Challenge Channel</h1>
 			<aside>
@@ -80,8 +64,9 @@
 			</ul>
 
 			<h3>Start a New Challenge</h3>
-			<form action="getChallenge.php" action="post" class="getChallenge">
-				<label>Enter Challenge Title:<br>
+			<p><img src="img/plus.png" rel="plus"> Create your own challenge</p>
+			<form action="bindChallenge.php" method="post" class="bindChallenge">
+				<label>Enter Challenge Identifier: (format is creator:title)<br>
 					<input type="text" name="title" required><br>
 				</label>
 				<input type="submit" value="Add Challenge" class="btn btn-default">
@@ -95,18 +80,15 @@
 			<div class="barImage"><img src="http://placekitten.com/400/400"/></div>
 			
 			<input id="exbar" type="text"
-	          data-provide="slider"
-	          data-slider-ticks="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-	          data-slider-ticks-labels='["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]'
-	          data-slider-min="1"
-	          data-slider-max="10"
-	          data-slider-step="1"
-	          data-slider-value="1"
-	          data-slider-tooltip="hide" />
-	    </div>
-	    <script src="js/tileprogressbar.js"></script>
-	     <script type="text/javascript">
-	    	$('.goalOne').css('display', 'none');
+			  data-provide="slider"
+			  data-slider-min="1"
+			  data-slider-step="1"
+			  data-slider-value="1"
+			  data-slider-tooltip="hide" />
+		</div>
+		<script src="js/tileprogressbar.js"></script>
+		 <script type="text/javascript">
+			$('.goalOne').css('display', 'none');
 			$('.goalTwo').css('display', 'none');
 			$('.goalThree').css('display', 'none');
 			$('.goalFour').css('display', 'none');
@@ -134,40 +116,40 @@
 			$('.goalTen').css('display', 'none');
 
 			switch(temp) {
-			    case '1':
-			       	console.log("1");
-			       	
-			       	$('.goalOne').css('display', 'inline');
-			        break;
-			    case '2':
-			        $('.goalTwo').css('display', 'inline');
-			        break;
-			    case '3':
-			        $('.goalThree').css('display', 'inline');
-			        break;
-			    case '4':
-			        $('.goalFour').css('display', 'inline');
-			        break;
-			    case '5':
-			        $('.goalFive').css('display', 'inline');
-			        break;
-			    case '6':
-			        $('.goalSix').css('display', 'inline');
-			        break;
-			    case '7':
-			        $('.goalSeven').css('display', 'inline');
-			        break;
-			    case '8':
-			        $('.goalEight').css('display', 'inline');
-			        break;
-			    case '9':
-			        $('.goalNine').css('display', 'inline');
-			        break;
-			    case '10':
-			        $('.goalTen').css('display', 'inline');
-			        break;
-			    default:
-			         console.log("1!");
+				case '1':
+					console.log("1");
+					
+					$('.goalOne').css('display', 'inline');
+					break;
+				case '2':
+					$('.goalTwo').css('display', 'inline');
+					break;
+				case '3':
+					$('.goalThree').css('display', 'inline');
+					break;
+				case '4':
+					$('.goalFour').css('display', 'inline');
+					break;
+				case '5':
+					$('.goalFive').css('display', 'inline');
+					break;
+				case '6':
+					$('.goalSix').css('display', 'inline');
+					break;
+				case '7':
+					$('.goalSeven').css('display', 'inline');
+					break;
+				case '8':
+					$('.goalEight').css('display', 'inline');
+					break;
+				case '9':
+					$('.goalNine').css('display', 'inline');
+					break;
+				case '10':
+					$('.goalTen').css('display', 'inline');
+					break;
+				default:
+					 console.log("1!");
 				} 			
 
 		}, 250);
@@ -179,66 +161,88 @@
 	</script>
 <?php 
 
-	require_once('loginInfo.php');
+	require "getChallenge.php";
 
-	$conn = new mysqli($hostAddress, $uname, $pword, $database); 
-  	if($conn->connect_error) die($conn->connect_error);
+	$challenges = unserialize($user['challenges']);
+	if($challenges){
+		foreach ($challenges as $title => $currentTask){
+			# get challenge info
+			$challengeData = getChallenge($title, $conn);
+			# generate ticks and labels as an array and convert to string
+			$ticks = "[".implode(",",range(1,$challengeData['numTasks']))."]";
+			echo"<input id='{$title}' type='text' class='challenge'
+				data-provide='slider'
+				data-slider-min='1'
+				data-slider-max='{$challengeData['numTasks']}'
+				data-slider-step='1'
+				data-slider-value='{$currentTask}';
+				data-slider-ticks={$ticks}
+				data-slider-ticks-labels={$ticks}
+				data-slider-tooltip='hide' />";
+		}
+		unset($currentTask); # required after foreach loop
+	}
 
-  	$query = "SELECT * FROM challengeswwallisabc";
-    $result = $conn->query($query);
-    if(!$result){
-      die($conn->error);
-    }
+	// require_once('loginInfo.php');
+
+	// $conn = new mysqli($hostAddress, $uname, $pword, $database); 
+ //  	if($conn->connect_error) die($conn->connect_error);
+
+ //  	$query = "SELECT * FROM challengeswwallisabc";
+ //    $result = $conn->query($query);
+ //    if(!$result){
+ //      die($conn->error);
+ //    }
 
    
 
-    $rows = $result->num_rows;
+ //    $rows = $result->num_rows;
 
-    $result->data_seek($i);
-    $goalOne = $result->fetch_assoc()["goalOne"];
+ //    $result->data_seek($i);
+ //    $goalOne = $result->fetch_assoc()["goalOne"];
 
-    $result->data_seek($i);
-    $goalTwo = $result->fetch_assoc()["goalTwo"];
+ //    $result->data_seek($i);
+ //    $goalTwo = $result->fetch_assoc()["goalTwo"];
 
-    $result->data_seek($i);
-    $goalThree = $result->fetch_assoc()["goalThree"];
+ //    $result->data_seek($i);
+ //    $goalThree = $result->fetch_assoc()["goalThree"];
 
-    $result->data_seek($i);
-    $goalFour = $result->fetch_assoc()["goalFour"];
+ //    $result->data_seek($i);
+ //    $goalFour = $result->fetch_assoc()["goalFour"];
 
-    $result->data_seek($i);
-    $goalFive = $result->fetch_assoc()["goalFive"];
+ //    $result->data_seek($i);
+ //    $goalFive = $result->fetch_assoc()["goalFive"];
 
-    $result->data_seek($i);
-    $goalSix = $result->fetch_assoc()["goalSix"];
+ //    $result->data_seek($i);
+ //    $goalSix = $result->fetch_assoc()["goalSix"];
 
-    $result->data_seek($i);
-    $goalSeven = $result->fetch_assoc()["goalSeven"];
+ //    $result->data_seek($i);
+ //    $goalSeven = $result->fetch_assoc()["goalSeven"];
 
-    $result->data_seek($i);
-    $goalEight = $result->fetch_assoc()["goalEight"];
+ //    $result->data_seek($i);
+ //    $goalEight = $result->fetch_assoc()["goalEight"];
 
-    $result->data_seek($i);
-    $goalNine = $result->fetch_assoc()["goalNine"];
+ //    $result->data_seek($i);
+ //    $goalNine = $result->fetch_assoc()["goalNine"];
 
-    $result->data_seek($i);
-    $goalTen = $result->fetch_assoc()["goalTen"];
+ //    $result->data_seek($i);
+ //    $goalTen = $result->fetch_assoc()["goalTen"];
 
-    echo "<div class='goalOne'><p>".$goalOne."</p></div>";
-    echo "<div class='goalTwo'><p>".$goalTwo."</p></div>";
-    echo "<div class='goalThree'><p>".$goalThree."</p></div>";
-    echo "<div class='goalFour'><p>".$goalFour."</p></div>";
-    echo "<div class='goalFive'><p>".$goalFive."</p></div>";
-    echo "<div class='goalSix'><p>".$goalSix."</p></div>";
-    echo "<div class='goalSeven'><p>".$goalSeven."</p></div>";
-    echo "<div class='goalEight'><p>".$goalEight."</p></div>";
-    echo "<div class='goalNine'><p>".$goalNine."</p></div>";
-    echo "<div class='goalTen'><p>".$goalTen."</p></div>";
+ //    echo "<div class='goalOne'><p>".$goalOne."</p></div>";
+ //    echo "<div class='goalTwo'><p>".$goalTwo."</p></div>";
+ //    echo "<div class='goalThree'><p>".$goalThree."</p></div>";
+ //    echo "<div class='goalFour'><p>".$goalFour."</p></div>";
+ //    echo "<div class='goalFive'><p>".$goalFive."</p></div>";
+ //    echo "<div class='goalSix'><p>".$goalSix."</p></div>";
+ //    echo "<div class='goalSeven'><p>".$goalSeven."</p></div>";
+ //    echo "<div class='goalEight'><p>".$goalEight."</p></div>";
+ //    echo "<div class='goalNine'><p>".$goalNine."</p></div>";
+ //    echo "<div class='goalTen'><p>".$goalTen."</p></div>";
 
 
 ?>
-	    </article>
-	</div><!-- .container -->
+		</article>
+	</div><!-- .container .main -->
 	</body>
 </html>
 
@@ -247,9 +251,9 @@
 	function getUser($username, $conn){
 		# set up query and post it to database
 		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
+		if(!$stmt) die ($conn->error);
 		$stmt->bind_param("s", $username); #? replaced with $username
 		$stmt->execute();
-		if(!$stmt) die ($conn->error);
 
 		# store result
 		$result = $stmt->get_result();

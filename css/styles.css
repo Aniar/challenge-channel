@@ -24,6 +24,11 @@ aside {
 	padding: 10px;
 }
 
+nav {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
 /*
  *
  *	LAYOUT
@@ -34,6 +39,11 @@ aside {
 	width: 70%;
 	max-width: 960px;
 	margin: 0 auto;
+}
+
+.main {
+	background-color: rgba(255,255,255,0.7);
+	border-radius: 25px;
 }
 
 .navbar {
@@ -71,6 +81,13 @@ aside {
 
 #signup {
 	background: white url("../img/business.jpg") no-repeat fixed center;
+	background-size: 100%;
+	position: relative;
+	font-family: Helvetica, sans-serif;
+}
+
+#new-challenge {
+	background: white url("../img/pencil.jpg") no-repeat fixed center;
 	background-size: 100%;
 	position: relative;
 	font-family: Helvetica, sans-serif;
