@@ -2,7 +2,6 @@
 	# getting info to connect to the database
 	require'loginInfo.php';
 
-	//TODO error handling for not logged in
 	$username = $_COOKIE['loggedIn'];
 
 	# new connection using login stored in "loginInfo.php"

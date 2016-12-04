@@ -7,7 +7,6 @@
 	$conn = new mysqli($hostAddress, $uname, $pword, $database);
 	if($conn->connect_error) die($conn->connect_error);
 
-	//TODO error on not logged in
 	# get username
 	$username = $_COOKIE["loggedIn"];
 
