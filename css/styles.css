@@ -226,18 +226,11 @@ span.error{
     -ms-transition: all .1s linear;
     -o-transition: all .1s linear;
 }
-#op {
+
+.tile.incomplete {
   opacity: .5; 
 }
 
-#op:hover {
-  opacity: 1; 
-}
-
-#next {
-  opacity: .5; 
-}
-
-#next:hover {
+.tile.incomplete:hover {
   opacity: 1; 
 }
