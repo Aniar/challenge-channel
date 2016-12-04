@@ -73,6 +73,13 @@ nav {
 	height: 100vh;
 }
 
+#profile {
+	background: white url("../img/desk-supplies.jpg") no-repeat fixed center;
+	background-size: 100%;
+	position: relative;
+	font-family: Helvetica, sans-serif;
+}
+
 #login {
 	background: white url("../img/brooklyn-bridge.jpg") no-repeat fixed center;
 	background-size: 100%;

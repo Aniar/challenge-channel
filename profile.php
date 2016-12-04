@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/progressBarStyles.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
-	<body>
+	<body id="profile">
 		<div class="container main">
 
 			<?php
