@@ -35,13 +35,12 @@
 
 			<h1>Challenge Channel</h1>
 			<aside>
-			<h2><?php echo "{$user['firstName']}"?>'s Profile <a href="settings.php" rel="Edit Profile"><img src="img/settings.png" rel="Edit Profile"></a></h2>
+			<h2><?php echo "{$user['firstName']}"?>'s Profile</h2>
 		
 			<div class="user-info">
-				<!-- fill with list of user info and social network friends -->
-				<?php echo "{$user['firstName']} {$user['lastName']}"?><br/>
-				<?php echo "{$user['userName']}"?><br/>
-				<!--# of friends<br /> -->
+				<p><a href="settings.php" rel="Edit Profile"><img src="img/settings.png" rel="Edit Profile"> Edit Profile</a></p>
+				<p><?php echo "{$user['firstName']} {$user['lastName']}"?></p>
+				<p><?php echo "{$user['userName']}"?></p>
 				
 
 			</div><!-- .user-info -->
