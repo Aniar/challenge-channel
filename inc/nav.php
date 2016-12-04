@@ -2,7 +2,7 @@
 	# Redirect to login page if not logged in
 	if(!$_COOKIE['loggedIn']){
 		# Redirect browser
-		header('Location: login.php'); 
+		header('Location: unauthorized.html'); 
 		exit();
 	}
 ?>
