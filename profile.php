@@ -35,7 +35,7 @@
 
 			<h1>Challenge Channel</h1>
 			<aside>
-			<h2><?php echo "{$user['firstName']}"?>'s Profile</h2>
+			<h2><?php echo "{$user['firstName']}"?>'s Profile <a href="settings.php" rel="Edit Profile"><img src="img/settings.png" rel="Edit Profile"></a></h2>
 		
 			<div class="user-info">
 				<!-- fill with list of user info and social network friends -->
@@ -56,7 +56,7 @@
 			</ul>
 
 			<h3>Start a New Challenge</h3>
-			<p><img src="img/plus.png" rel="plus"> Create your own challenge</p>
+			<p><a href="newChallenge.php" rel="Create Challenge"><img src="img/plus.png" rel="plus"> Create your own challenge</a></p>
 			<form action="bindChallenge.php" method="post" class="bindChallenge">
 				<label>Enter Challenge Identifier: (format is creator:title)<br>
 					<input type="text" name="title" required><br>
