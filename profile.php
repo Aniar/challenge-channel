@@ -1,18 +1,4 @@
 <html>
-	<?php
-
-		# getting info to connect to the database
-		require'loginInfo.php';
-
-		# new connection using login stored in "loginInfo.php"
-		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
-
-		# get user info based on username
-		$user = getUser($_COOKIE['loggedIn'], $conn);
-
-
-	?>
 	<head>
 		<meta charset="utf-8">
 		<title>Profile | Challenge Channel</title>
@@ -33,7 +19,19 @@
 	<body>
 		<div class="container main">
 
-			<?php include 'inc/nav.php' ?>
+			<?php
+				include 'inc/nav.php'
+
+				# getting info to connect to the database
+				require'loginInfo.php';
+
+				# new connection using login stored in "loginInfo.php"
+				$conn = new mysqli($hostAddress, $uname, $pword, $database);
+				if($conn->connect_error) die($conn->connect_error);
+
+				# get user info based on username
+				$user = getUser($_COOKIE['loggedIn'], $conn);
+			?>
 
 			<h1>Challenge Channel</h1>
 			<aside>
