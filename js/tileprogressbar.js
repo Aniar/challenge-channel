@@ -3,6 +3,7 @@ $(document).ready(function() {
   $.fn.splitInTiles = function(numTasks, currentTask) {
 
     var o = {x:numTasks, y:1, gap:2};
+    var newCurrentTask;
     console.log("ss");
 
       var $container = $(this),
@@ -12,16 +13,18 @@ $(document).ready(function() {
           n_tiles = o.x * o.y,
           wraps = [], $wraps;
 
+      count = 1;
       for ( var i = 0; i < n_tiles; i++ ) {
+        
         if(i < currentTask){
-            wraps.push('<div class="tile"/>');
-        }
-        else if(i == currentTask) {
-        	wraps.push('<div id="next" class="tile"/>');
+            var tileString = '<div id="n' + count + '" class="tile"/>';
+            wraps.push(tileString);
         }
         else {
-        	wraps.push('<div id="op" class="tile"/>');
+          var tileString = '<div id="n' + count + '" class="tile incomplete"/>';
+          wraps.push(tileString);
         }
+        count++;
       }
 
       $wraps = $(wraps.join(''));
@@ -44,10 +47,25 @@ $(document).ready(function() {
         $(this).css( 'backgroundPosition', -pos.left +'px '+ -pos.top +'px' );
       });
       
-      $("#op").click(function() {
-  			alert( "meep" );
-        $("#op").attr('id', '');
-			});
+      $(".tile").click(function() {
+          var tileId = $(this).attr('id');
+          var idnum = tileId.substring(1, tileId.length);
+          // alert(idnum);
+          newCurrentTask = idnum;
+          for(var n = 1; n <= numTasks; n++){
+              
+              var getElement = "#n" + n;
+
+              if(n <= idnum){
+                  $(getElement).removeClass();
+                  $(getElement).addClass("tile");
+              }
+              else{
+                  $(getElement).removeClass();
+                  $(getElement).addClass("tile incomplete");
+              }
+          }
+      });
   };
 
 $(".barImage").splitInTiles(10,3);
