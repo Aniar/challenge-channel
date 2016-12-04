@@ -11,10 +11,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body id="new-challenge"><?php include 'inc/nav.php' ?>
-	<div class="container main">
+<body id="new-challenge">
 
-		
+	<?php include 'inc/nav.php' ?>
+	
+	<div class="container main">
 		
 		<h1>Create a New Challenge</h1>
 		<p>Customize your challenge with as many steps as you like for whatever goal you want to reach.</p>
@@ -38,5 +39,5 @@
 		<p id='message'></p>
 		
 	</div><!-- .container -->
-</body>
+</body><!-- #new-challenge -->
 <html>

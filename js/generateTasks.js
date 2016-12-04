@@ -16,7 +16,7 @@ function generateTasks(){
 	for(var i = 1; i <= numTasks; i++){
 		taskFields[i-1] = 
 			[
-			"<label class='task'> Task " + i + ": <br>",
+			"<label class='task'>Task " + i + ": <br>",
 				"<input type='text' name='task["+i+"]' required><br>",
 			"</label>"
 			].join("\n");
@@ -25,7 +25,7 @@ function generateTasks(){
 	//add submission button
 	taskFields.push([
 		"<label class='task'> <br>",
-			"<input class='task' type='submit' value='Create Challenge'>",
+			"<input class='btn btn-default' type='submit' value='Create Challenge'>",
 		"</label>"].join("\n"));
 	//append it all
 	$('#challengeForm').append(taskFields.join("\n"));

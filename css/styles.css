@@ -27,6 +27,7 @@ aside {
 nav {
 	padding-left: 10%;
 	padding-right: 10%;
+	background-color: white;
 }
 
 /*
@@ -86,8 +87,15 @@ nav {
 	font-family: Helvetica, sans-serif;
 }
 
-#new-challenge {
+#settings {
 	background: white url("../img/pencil.jpg") no-repeat fixed center;
+	background-size: 100%;
+	position: relative;
+	font-family: Helvetica, sans-serif;
+}
+
+#new-challenge {
+	background: white url("../img/tools.jpg") no-repeat fixed center;
 	background-size: 100%;
 	position: relative;
 	font-family: Helvetica, sans-serif;
@@ -136,6 +144,10 @@ nav {
 	text-decoration: none;
 	color: black;
 	font-family: Helvetica, sans-serif;
+}
+
+.task {
+	display: block;
 }
 
 /*
