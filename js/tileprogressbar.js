@@ -1,27 +1,9 @@
-// 
-// // $("#exbar").slider();
-// var slider = new Slider("#exbar");
-// 
-// $("#exbar").slider().on('slide', function(slideEvt) {
-// 	alert('suppp');
-// 	// var current = slideEvt.value;
-// // 	slider.setValue(current);
-// });
+$(document).ready(function() {
 
-(function($, window) {
+  $.fn.splitInTiles = function(numTasks, currentTask) {
 
-	var current = 7;
-  	var _defaults = {
-    x : 10, // tiles in x axis
-    y : 1, // tiles in y axis
-    gap: 2
-  };
-
-  $.fn.splitInTiles = function(options) {
-
-    var o = $.extend( {}, _defaults, options );
-
-    return this.each(function() {
+    var o = {x:numTasks, y:1, gap:2};
+    console.log("ss");
 
       var $container = $(this),
           width = $container.width(),
@@ -31,10 +13,10 @@
           wraps = [], $wraps;
 
       for ( var i = 0; i < n_tiles; i++ ) {
-        if(i < current){
+        if(i < currentTask){
             wraps.push('<div class="tile"/>');
         }
-        else if(i == current) {
+        else if(i == currentTask) {
         	wraps.push('<div id="next" class="tile"/>');
         }
         else {
@@ -66,11 +48,9 @@
   			alert( "meep" );
         $("#op").attr('id', '');
 			});
-			
-		});
   };
 
-}(jQuery, window));
+$(".barImage").splitInTiles(10,3);
 
-$(".barImage").splitInTiles();
+});
 
