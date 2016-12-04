@@ -101,6 +101,20 @@ nav {
 	font-family: Helvetica, sans-serif;
 }
 
+#confirmation {
+	background: white url("../img/train-tracks.jpg") no-repeat fixed center;
+	background-size: 100%;
+	position: relative;
+	font-family: Helvetica, sans-serif;
+}
+
+#unauthorized {
+	background: white url("../img/hiking-feet.jpg") no-repeat fixed center;
+	background-size: 100%;
+	position: relative;
+	font-family: Helvetica, sans-serif;
+}
+
 #login ul, #signup ul {
 	list-style-type: none;
 	margin: 0;
