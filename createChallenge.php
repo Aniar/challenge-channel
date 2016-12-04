@@ -12,7 +12,6 @@
 	$summary = $_POST['summary'];
 	$numTasks = $_POST['numTasks'];
 	$title = $_COOKIE['loggedIn'].":".$_POST['title'];
-	}
 
 	# get all tasks and serialize for storage
 	$tasks = serialize($_POST['task']);

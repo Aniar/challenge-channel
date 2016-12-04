@@ -7,7 +7,6 @@
 		
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-		<script src="js/insertChallenge.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.4.1/css/bootstrap-slider.min.css" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.4.1/bootstrap-slider.min.js"></script>
 		
@@ -74,11 +73,12 @@
 		foreach ($challenges as $title => $currentTask){
 			# get challenge info
 			$challengeData = getChallenge($title, $conn);
-			# generate ticks and labels as an array and convert to string
-			$ticks = "[".implode(",",range(1,$challengeData['numTasks']))."]";
-			echo"<div id='{$title}' class='challenge' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
-					<img src='img/color-run.jpg'/>
-				</div>";
+			echo"<label class='challenge'> $title
+					<div id='{$title}' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
+						<img src='img/road.jpg'/>
+					</div>
+					<br>
+				</label>";
 		}
 		unset($currentTask); # required after foreach loop
 	}
@@ -86,6 +86,7 @@
 		</article>
 	</div><!-- .container .main -->
 	</body>
+	<script src="js/insertChallenge.js"></script>
 </html>
 
 <?php 
