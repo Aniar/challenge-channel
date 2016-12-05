@@ -29,7 +29,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 						$('#message').text(field+" updated");
 					else
 						$('p.error').text("Error updating information");
-				}).fail(function(data){console.log(data);});
+				});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();
 		});
