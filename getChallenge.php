@@ -7,9 +7,14 @@
 		$stmt->execute();
 
 		# store result
-		$result = $stmt->get_result();
+		$stmt->bind_result(
+			$result['title'],
+			$result['summary'],
+			$result['tasks'],
+			$result['numTasks']);
 		$stmt->fetch();
+		$stmt->close();
 
-		return $result->fetch_assoc();
+		return $result;
 	}
 ?>

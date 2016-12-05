@@ -65,21 +65,17 @@
 	function isConflict($database, $fieldName, $fieldValue){
 
 		# set up query and post it to database
-		$stmt = $database->prepare("SELECT * FROM userInfo WHERE $fieldName = ?");
+		$stmt = $database->prepare("SELECT userName FROM userInfo WHERE $fieldName = ?");
 		if(!$stmt) die($database->error);
 		$stmt->bind_param("s", $fieldValue);
 		$stmt->execute();
-
-		# store result
-		$result = $stmt->get_result();
-		$stmt->fetch();
-
-		$stmt->close();
-
+		$stmt->store_result();
 		# $fieldName already being used 
-		if($result->num_rows > 0){
+		if($stmt->num_rows > 0){
+			$stmt->close();
 			return true;
 		}
+		$stmt->close();
 		return false;
 	}
 

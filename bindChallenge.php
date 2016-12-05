@@ -21,10 +21,10 @@
 	$stmt->execute();
 
 	# store result
-	$result = $stmt->get_result();
+	$stmt->bind_result($challenges);
 	$stmt->fetch();
+	$stmt->close();
 
-	$challenges = $result->fetch_assoc()['challenges'];
 	if(is_null($challenges)) # No bound challenges
 		$challenges = array($newChallenge['title'] => 1); # store challenge with currentTask as 1
 	else{

@@ -15,13 +15,17 @@
 	$stmt->execute();
 
 	# store result
-	$result = $stmt->get_result();
+	$stmt->bind_result($result);
 	$stmt->fetch();
+	$stmt->close();
 
-	$challenges = unserialize($result->fetch_assoc()['challenges']); # get array object
-	//TODO if challenges null error
+	if(!$result)
+		echo json_encode(false);
+
+	$challenges = unserialize($result); # get array object
 	$challenges[$_POST['title']] = $_POST['newValue']; # update currentTask
 	$challenges = serialize($challenges); # serialize for storage
+
 
 	# bind challenge list to username
 	$stmt = $conn->prepare("UPDATE userInfo SET challenges = ? WHERE userName = ?");

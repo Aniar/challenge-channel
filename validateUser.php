@@ -19,33 +19,28 @@
 		if($conn->connect_error) die($conn->connect_error);
 
 		# set up query and post it to database
-		$stmt = $conn->prepare("SELECT * FROM userInfo WHERE userName = ?");
+		$stmt = $conn->prepare("SELECT password FROM userInfo WHERE userName = ?");
 		if(!$stmt) die ($conn->error);
 		$stmt->bind_param("s", $username); #? replaced with $username
 		$stmt->execute();
 
 		# store result
-		$result = $stmt->get_result();
+		$stmt->bind_result($result);
 		$stmt->fetch();
-
-		# user not found or multiple identical usernames
-		if($result->num_rows != 1) return false;
-
-		$verified = false;
-
-		# verify password
-		if(password_verify($password, $result->fetch_assoc()['password'])){
-			# set cookie to remember login for 1 month on entire domain
-			date_default_timezone_set('UTC'); # prevents warnings about timezone
-			setcookie("loggedIn", $username, strtotime("+1 month"), "/");
-			
-			$verified = true;
-		}
 
 		# cleanup
 		$stmt->close();
 		$conn->close();
 
-		return $verified;
+		# verify password
+		if($result && password_verify($password, $result)){
+			# set cookie to remember login for 1 month on entire domain
+			date_default_timezone_set('UTC'); # prevents warnings about timezone
+			setcookie("loggedIn", $username, strtotime("+1 month"), "/");
+			
+			return true;
+		}
+
+		return false;
 	}
 ?>

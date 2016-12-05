@@ -99,11 +99,17 @@
 		$stmt->execute();
 
 		# store result
-		$result = $stmt->get_result();
+		$stmt->bind_result(
+			$result['firstName'],
+			$result['lastName'],
+			$result['userName'],
+			$result['email'],
+			$result['password'],
+			$result['age'],
+			$result['challenges']);
 		$stmt->fetch();
-
 		$stmt->close();
 
-		return $result->fetch_assoc();
+		return $result;
 	}
 ?>
