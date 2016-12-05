@@ -7,8 +7,6 @@
 		
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.4.1/css/bootstrap-slider.min.css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.4.1/bootstrap-slider.min.js"></script>
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -73,8 +71,10 @@
 		foreach ($challenges as $title => $currentTask){
 			# get challenge info
 			$challengeData = getChallenge($title, $conn);
+			$currentTaskInfo = unserialize($challengeData['tasks'])[$currentTask+1];
 			echo"<label class='challenge'> $title
 					<div id='{$title}' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
+						<p class='{$title}'>Up Next: {$currentTaskInfo}</p>
 						<img src='img/road.jpg'/>
 					</div>
 					<br>

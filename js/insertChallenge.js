@@ -46,11 +46,11 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			$(this).css( 'backgroundPosition', -pos.left +'px '+ -pos.top +'px' );
 		});
 
-		$("."+progressBarId.replace(":","\\:")).click(function() {
+		$("div."+progressBarId.replace(":","\\:")).click(function() {
 			var idnum = $(this).attr('id').substring(1);
 
 
-			$("."+progressBarId.replace(":","\\:")).each(function(){
+			$("div."+progressBarId.replace(":","\\:")).each(function(){
 				if($(this).attr('id').substring(1) <= idnum){
 					$(this).removeClass();
 					$(this).addClass(progressBarId+" tile");
@@ -78,10 +78,11 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			encode		: true
 		})
 			.done(function(data) { //on ajax success
-				if(data)
-					console.log("Database updated");
-			}).fail(function(data){
-				console.log(data);
+				if(data){
+					$("p."+title.replace(":","\\:")).text("Up Next: " +data.nextTask);
+				}
+				else
+					console.log("update fug up");
 			});
 	}
 
@@ -105,6 +106,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				if(data){
 					var progressBar = [
 						'<label class="challenge">' + data.title,
+							'<p class="'+data.title+'">Up Next: '+ data.tasks +'</p>',
 							'<div id="'+data.title+'">',
 								'<img src="img/road.jpg"/>',
 							'</div>',
@@ -112,7 +114,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 						'</label>'
 					].join("\n");
 					$('#challenges').append(progressBar);
-					$('#'+data.title.replace(":","\\:")).splitInTiles(data.numTasks,1);
+					$('#'+data.title.replace(":","\\:")).splitInTiles(data.numTasks,0);
 				}
 				else{
 					console.log("fuggg");

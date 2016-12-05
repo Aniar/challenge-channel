@@ -19,8 +19,10 @@
 	$stmt->fetch();
 	$stmt->close();
 
-	if(!$result)
+	if(!$result){
 		echo json_encode(false);
+		die();
+	}
 
 	$challenges = unserialize($result); # get array object
 	$challenges[$_POST['title']] = $_POST['newValue']; # update currentTask
@@ -35,7 +37,21 @@
 	$stmt->execute();
 
 	$stmt->close();
+
+	# get next task info
+	$stmt = $conn->prepare("SELECT tasks FROM challenges WHERE title = ?");
+	if(!$stmt) die($conn->error);
+	$stmt->bind_param("s", $_POST['title']); # 's' means string
+	$stmt->execute();
+
+	# store result
+	$stmt->bind_result($tasks);
+	$stmt->fetch();
+	$stmt->close();
+
 	$conn->close();
 
-	echo json_encode(true);
+	$data['nextTask'] = unserialize($tasks)[$_POST['newValue']+1];
+
+	echo json_encode($data);
 ?>

@@ -26,14 +26,14 @@
 	$stmt->close();
 
 	if(is_null($challenges)) # No bound challenges
-		$challenges = array($newChallenge['title'] => 1); # store challenge with currentTask as 1
+		$challenges = array($newChallenge['title'] => 0); # store challenge with currentTask as 1
 	else{
 		$challenges = unserialize($challenges); # get real array from serialized string
 		if($challenges[$newChallenge['title']]){ # duplicate challenge
 			echo json_encode(false);
 			die(); //TODO: better error here
 		}
-		$challenges[$newChallenge['title']] = 1; # store challenge with currentTask as 1
+		$challenges[$newChallenge['title']] = 0; # store challenge with currentTask as 1
 	}
 	$challenges = serialize($challenges); # serialize for storage
 
@@ -46,6 +46,8 @@
 
 	$stmt->close();
 	$conn->close();
+
+	$newChallenge['tasks'] = unserialize($newChallenge['tasks'])[1];
 
 	echo json_encode($newChallenge);
 
