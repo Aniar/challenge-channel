@@ -21,4 +21,8 @@
 
 	$stmt->close();
 	$conn->close();
+
+	# Redirect browser
+	header('Location: confirmation.html'); 
+	exit();
 ?>
