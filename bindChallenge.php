@@ -29,6 +29,10 @@
 		$challenges = array($newChallenge['title'] => 1); # store challenge with currentTask as 1
 	else{
 		$challenges = unserialize($challenges); # get real array from serialized string
+		if($challenges[$newChallenge['title']]){ # duplicate challenge
+			echo json_encode(false);
+			die(); //TODO: better error here
+		}
 		$challenges[$newChallenge['title']] = 1; # store challenge with currentTask as 1
 	}
 	$challenges = serialize($challenges); # serialize for storage
@@ -43,9 +47,6 @@
 	$stmt->close();
 	$conn->close();
 
-	# create some extra data for the slider
-	$newChallenge['ticks'] = range(1,$newChallenge['numTasks']);
-	$newChallenge['ticks_labels'] = array_map('strval', range(1,$newChallenge['numTasks']));
 	echo json_encode($newChallenge);
 
 ?>
