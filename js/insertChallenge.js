@@ -47,23 +47,19 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		});
 
 		$("."+progressBarId.replace(":","\\:")).click(function() {
-			var tileId = $(this).attr('id');
-			console.log(tileId);
-			var idnum = tileId.substring(1, tileId.length);
-			// alert(idnum);
-			for(var n = 1; n <= numTasks; n++){
-				
-				var getElement = "#n" + n;
+			var idnum = $(this).attr('id').substring(1);
 
-				if(n <= idnum){
-					$(getElement).removeClass();
-					$(getElement).addClass(progressBarId+" tile");
+
+			$("."+progressBarId.replace(":","\\:")).each(function(){
+				if($(this).attr('id').substring(1) <= idnum){
+					$(this).removeClass();
+					$(this).addClass(progressBarId+" tile");
 				}
 				else{
-					$(getElement).removeClass();
-					$(getElement).addClass(progressBarId+" tile incomplete");
+					$(this).removeClass();
+					$(this).addClass(progressBarId+" tile incomplete");
 				}
-			}
+			});
 			updateCurrentTask(progressBarId, idnum);
 	  });
 	};
@@ -84,6 +80,8 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			.done(function(data) { //on ajax success
 				if(data)
 					console.log("Database updated");
+			}).fail(function(data){
+				console.log(data);
 			});
 	}
 
@@ -114,7 +112,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 						'</label>'
 					].join("\n");
 					$('#challenges').append(progressBar);
-					$('#challenges').find('#'+data.title.replace(":","\\:")).splitInTiles(data.numTasks,1);
+					$('#'+data.title.replace(":","\\:")).splitInTiles(data.numTasks,1);
 				}
 				else{
 					console.log("fuggg");
