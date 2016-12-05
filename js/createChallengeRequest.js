@@ -22,7 +22,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				.done(function(data) { //on ajax success
 					// if validation error
 					if(data)
-						$('#message').text("Challenge created!");
+						$('#message').html("Challenge created! <br><a href='profile.php'>Return to profile</a>");
 					else
 						$('p.error').text("Error creating challenge.");
 				});
