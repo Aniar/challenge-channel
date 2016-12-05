@@ -1,5 +1,8 @@
 $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitting-ajax-forms-with-jquery
 
+	/*
+	* Splits image into tiles to make a progress bar
+	*/
 	$.fn.splitInTiles = function(numTasks, currentTask) {
 
 		var progressBarId = $(this).attr('id');
@@ -46,11 +49,10 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			$(this).css( 'backgroundPosition', -pos.left +'px '+ -pos.top +'px' );
 		});
 
-		$("div."+progressBarId.replace(":","\\:")).click(function() {
+		$("div."+esc(progressBarId)).click(function() {
 			var idnum = $(this).attr('id').substring(1);
 
-
-			$("div."+progressBarId.replace(":","\\:")).each(function(){
+			$("div."+esc(progressBarId)).each(function(){
 				if($(this).attr('id').substring(1) <= idnum){
 					$(this).removeClass();
 					$(this).addClass(progressBarId+" tile");
@@ -60,15 +62,16 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					$(this).addClass(progressBarId+" tile incomplete");
 				}
 			});
-			updateCurrentTask(progressBarId, idnum);
+			updateCurrentTask(progressBarId.replace(/_/g, " "), idnum);
 	  });
 	};
 
+	/*
+	* Updates current value in database (called on tile click)
+	*/
 	function updateCurrentTask(title, value){
 
 		var updateData = "title="+title+"&"+"newValue="+value;
-
-		//add title
 
 		$.ajax({
 			type 		: 'POST', // post request
@@ -79,7 +82,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		})
 			.done(function(data) { //on ajax success
 				if(data){
-					$("p."+title.replace(":","\\:")).text("Up Next: " +data.nextTask);
+					$("p."+esc(space(title))).text("Up Next: " + data.nextTask);
 				}
 				else
 					console.log("update fug up");
@@ -104,17 +107,18 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		})
 			.done(function(data) { //on ajax success
 				if(data){
+					//add new challenge to profile
 					var progressBar = [
 						'<label class="challenge">' + data.title,
-							'<p class="'+data.title+'">Up Next: '+ data.tasks +'</p>',
-							'<div id="'+data.title+'">',
+							'<p class="'+space(data.title)+'">Up Next: '+ data.tasks +'</p>',
+							'<div id="'+space(data.title)+'">',
 								'<img src="img/road.jpg"/>',
 							'</div>',
 							'<br>',
 						'</label>'
 					].join("\n");
 					$('#challenges').append(progressBar);
-					$('#'+data.title.replace(":","\\:")).splitInTiles(data.numTasks,0);
+					$('#'+esc(space(data.title))).splitInTiles(data.numTasks,0);
 				}
 				else{
 					console.log("fuggg");
@@ -125,7 +129,19 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		event.preventDefault();
 	});
 
-	if($('.challenge > div').length > 0){ // make cached challenges update database on change
+	/*
+	* jQuery escape functions
+	*
+	* Escapes/replaces special characters for use in jQuery selector
+	*/
+	function esc(str){
+		return str.replace( /(:|\.|\[|\]|,|=)/g, "\\$1" );
+	}
+	function space(str){
+		return str.replace(/ /g, "_");
+	}
+
+	if($('.challenge > div').length > 0){ // handle cached challenges
 		$('.challenge > div').each( function(){
 			$(this).splitInTiles($(this).attr('data-numTasks'),$(this).attr('data-currentTask'))
 		});

@@ -72,9 +72,10 @@
 			# get challenge info
 			$challengeData = getChallenge($title, $conn);
 			$currentTaskInfo = unserialize($challengeData['tasks'])[$currentTask+1];
+			$noSpaceTitle = preg_replace("/ /", "_", $title);
 			echo"<label class='challenge'> $title
-					<div id='{$title}' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
-						<p class='{$title}'>Up Next: {$currentTaskInfo}</p>
+					<div id='{$noSpaceTitle}' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
+						<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
 						<img src='img/road.jpg'/>
 					</div>
 					<br>
