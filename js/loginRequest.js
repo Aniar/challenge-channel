@@ -24,7 +24,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 						if(data.errors)
 							$('p.error').text(data.errors.loginError);
 						else if(data.success)
-							window.location = '../profile.php'
+							window.location = 'profile.php'
 					}
 					else
 						$('p.error').text("Error");
