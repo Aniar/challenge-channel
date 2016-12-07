@@ -11,7 +11,7 @@
 	$username = $_COOKIE["loggedIn"];
 
 	# log out
-	setcookie("loggedIn", "", time()-3600);
+	setcookie("loggedIn", "", time()-3600, "/");
 
 	#Delete account
 	$stmt = $conn->prepare("DELETE FROM userInfo WHERE userName=?");
