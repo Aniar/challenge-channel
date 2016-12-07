@@ -12,7 +12,7 @@
 	if($conn->connect_error) die($conn->connect_error);
 
 	# get challenge info
-	$newChallenge = getChallenge($_POST['title'], $conn);
+	$newChallenge = getChallenge($_POST['creator'].":".$_POST['title'], $conn);
 
 	if(!$newChallenge['title']){ # challenge doesn't exist
 		echo json_encode(false);
