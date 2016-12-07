@@ -42,7 +42,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 						}
 
 					} else { // account created
-						$('#message').text(data.message + '<br> <a href="login.php">Login Here!</a>');
+						$('#message').html(data.message + '<br> <a href="login.php">Login Here!</a>');
 					}
 				});
 
