@@ -29,6 +29,6 @@
 	$stmt->close();
 	$conn->close();
 
-	echo json_encode(true);
+	echo json_encode($title);
 
 ?>

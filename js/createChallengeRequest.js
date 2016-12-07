@@ -21,8 +21,17 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			})
 				.done(function(data) { //on ajax success
 					// if validation error
-					if(data)
+					if(data){
 						$('#message').text("Challenge created!");
+						// add challenge to profile page
+						$.ajax({
+							type 		: 'POST', // post request
+							url 		: 'bindChallenge.php', // php file to handle the post
+							data 		:  "title="+data, // data to be sent
+							dataType 	: 'json', // data type expected back
+							encode		: true
+						});
+					}
 					else
 						$('p.error').text("Error creating challenge.");
 				});
