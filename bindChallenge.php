@@ -14,6 +14,11 @@
 	# get challenge info
 	$newChallenge = getChallenge($_POST['title'], $conn);
 
+	if(!$newChallenge['title']){ # challenge doesn't exist
+		echo json_encode(false);
+		die(); //TODO: better error here
+	}
+
 	# get bound challenges
 	$stmt = $conn->prepare("SELECT challenges FROM userInfo WHERE userName = ?");
 	if(!$stmt) die($conn->error);
