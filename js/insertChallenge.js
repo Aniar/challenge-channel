@@ -106,6 +106,26 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			});
 	}
 
+	$('form.removeChallenge').submit(function(event) {
+
+		//get challenge to remove
+		var deleteId = $(this).attr('data-deleteId');
+		// get data from form
+		var formData = "title="+deleteId;
+		//remove challenge
+		$("#"+esc(space(deleteId))).remove();
+
+		// delete challenge from database
+		$.ajax({
+			type 		: 'POST', // post request
+			url 		: 'removeChallenge.php', // php file to handle the post
+			data 		: formData, // data to be sent
+			dataType 	: 'json', // data type expected back
+			encode		: true
+		});
+
+	});
+
 	// process the form
 	$('form.bindChallenge').submit(function(event) {
 
