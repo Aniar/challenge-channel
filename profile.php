@@ -60,7 +60,7 @@
 			<h3>Start a New Challenge</h3>
 			<p><a href="newChallenge.php" rel="Create Challenge"><img src="img/plus.png" rel="plus"> Create your own challenge</a></p>
 
-			<h4> Add Someone Else's Challenge: </h4>
+			<h4> Add Existing Challenge: </h4>
 			<form action="bindChallenge.php" method="post" class="bindChallenge">
 				<label>Enter Creator's Username and Challenge's Title<br>
 					<input type="text" name="creator" placeholder="username" required>

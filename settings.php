@@ -55,7 +55,7 @@
 	</form>
 
 	<form action="deleteUser.php" method="post">
-		<a href="confirmation.html"><input type="submit" value="Delete Account" class="btn btn-default"></a>
+		<input type="submit" value="Delete Account" class="btn btn-default">
 	</form>
 
 	<p id='message'></p>
