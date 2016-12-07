@@ -43,14 +43,23 @@
 		--><article>
 			<h3>Completed Challenges</h3>
 			<!-- user's completed/past challenges in a list -->
-			<ul>
-				<li><a href="#">10 day minimalism challenge</a></li>
-				<li><a href="#">7 day squat challenge</a></li>
-				<li><a href="#">5 day smartphone detox</a></li>
+			<ul id="completed">
+				<?php
+
+					$challenges = unserialize($user['challenges']);
+
+					if($challenges){
+						foreach ($challenges as $title => $currentTask)
+							if($currentTask == -1) # if challenge marked as completed
+								echo"<li>{$title}</li>";
+						unset($currentTask); # required after foreach loop
+					}
+				?>
 			</ul>
 
 			<h3>Start a New Challenge</h3>
 			<p><a href="newChallenge.php" rel="Create Challenge"><img src="img/plus.png" rel="plus"> Create your own challenge</a></p>
+
 			<form action="bindChallenge.php" method="post" class="bindChallenge">
 				<label>Enter Challenge Identifier: (format is creator:title)<br>
 					<input type="text" name="title" required><br>
@@ -59,31 +68,31 @@
 			</form>
 
 			<h3>Current Challenges</h3>
-		
-		<div id="challenges">
-		</div>
-<?php 
+			<div id="challenges">
+				<?php 
 
-	require "getChallenge.php";
+					require "getChallenge.php";
 
-	$challenges = unserialize($user['challenges']);
-	if($challenges){
-		foreach ($challenges as $title => $currentTask){
-			# get challenge info
-			$challengeData = getChallenge($title, $conn);
-			$currentTaskInfo = unserialize($challengeData['tasks'])[$currentTask+1];
-			$noSpaceTitle = preg_replace("/ /", "_", $title);
-			echo"<label class='challenge'> $title
-					<div id='{$noSpaceTitle}' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
-						<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
-						<img src='img/road.jpg'/>
-					</div>
-					<br>
-				</label>";
-		}
-		unset($currentTask); # required after foreach loop
-	}
-?>
+					if($challenges){
+						foreach ($challenges as $title => $currentTask){
+							if($currentTask != -1){ # unfinished challenge
+								# get challenge info
+								$challengeData = getChallenge($title, $conn);
+								$currentTaskInfo = unserialize($challengeData['tasks'])[$currentTask+1];
+								$noSpaceTitle = preg_replace("/ /", "_", $title);
+								echo"<label id='${noSpaceTitle}' class='challenge'> $title
+										<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
+										<div class='progressBar' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
+											<img src='img/road.jpg'/>
+										</div>
+										<br>
+									</label>";
+							}
+						}
+						unset($currentTask); # required after foreach loop
+					}
+				?>
+			</div>
 		</article>
 	</div><!-- .container .main -->
 	</body>

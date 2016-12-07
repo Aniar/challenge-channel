@@ -8,7 +8,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		var progressBarId = $(this).attr('id');
 		var dim = {x:numTasks, y:1, gap:2};
 
-		var $container = $(this),
+		var $container = $(this).children('.progressBar'),
 			width = $container.width(),
 			height = $container.height(),
 			$img = $container.find('img'),
@@ -82,7 +82,24 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		})
 			.done(function(data) { //on ajax success
 				if(data){
-					$("p."+esc(space(title))).text("Up Next: " + data.nextTask);
+					if(data.nextTask)
+						$("p."+esc(space(title))).text("Up Next: " + data.nextTask);
+					else{
+						alert("You've completed challenge "+title+", congratulations!\n"+
+								"It will be moved to your completed challenges.");
+						$("#"+esc(space(title))).remove();
+						$("#completed").append('<li>'+title+'</li>');
+
+						//TODO: Give choice to leave challenge where it is (needs database interactions)
+						// var remove = confirm("You've completed challenge "+title+", congratulations!\n"+
+						// 		"Press OK to move to completed challenges or CANCEL to leave it where it is.");
+						// if(remove){
+						// 	$("#"+esc(space(title))).remove();
+						// 	$("#completed").append('<li>'+title+'</li>');
+						// }
+						// else
+						// 	$("p."+esc(space(title))).text("You've finished this challenge!");
+					}
 				}
 				else
 					console.log("update fug up");
@@ -109,9 +126,9 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				if(data){
 					//add new challenge to profile
 					var progressBar = [
-						'<label class="challenge">' + data.title,
+						'<label id="'+space(data.title)+'"" class="challenge">' + data.title,
 							'<p class="'+space(data.title)+'">Up Next: '+ data.tasks +'</p>',
-							'<div id="'+space(data.title)+'">',
+							'<div class="progressBar">',
 								'<img src="img/road.jpg"/>',
 							'</div>',
 							'<br>',
@@ -141,9 +158,12 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		return str.replace(/ /g, "_");
 	}
 
-	if($('.challenge > div').length > 0){ // handle cached challenges
-		$('.challenge > div').each( function(){
-			$(this).splitInTiles($(this).attr('data-numTasks'),$(this).attr('data-currentTask'))
+	if($('.challenge').length > 0){ // handle cached challenges
+		$('.challenge').each( function(){
+			$(this).splitInTiles(
+				$(this).children(".progressBar").attr('data-numTasks'),
+				$(this).children(".progressBar").attr('data-currentTask')
+			);
 		});
 	}
 });

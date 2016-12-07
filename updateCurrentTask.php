@@ -3,6 +3,8 @@
 	require'loginInfo.php';
 
 	$username = $_COOKIE['loggedIn'];
+	$title = $_POST['title'];
+	$newValue = $_POST['newValue'];
 
 	# new connection using login stored in "loginInfo.php"
 	$conn = new mysqli($hostAddress, $uname, $pword, $database);
@@ -24,24 +26,10 @@
 		die();
 	}
 
-	$challenges = unserialize($result); # get array object
-	$challenges[$_POST['title']] = $_POST['newValue']; # update currentTask
-	$challenges = serialize($challenges); # serialize for storage
-
-
-	# bind challenge list to username
-	$stmt = $conn->prepare("UPDATE userInfo SET challenges = ? WHERE userName = ?");
-	if(!$stmt) die($conn->error);
-	$stmt->bind_param("bs", $challenges, $username); # 'b' means blob, 's' means string
-	$stmt->send_long_data(0, $challenges); # 0 means arg[0]. Have to send blobs this way as they may be super big
-	$stmt->execute();
-
-	$stmt->close();
-
 	# get next task info
 	$stmt = $conn->prepare("SELECT tasks FROM challenges WHERE title = ?");
 	if(!$stmt) die($conn->error);
-	$stmt->bind_param("s", $_POST['title']); # 's' means string
+	$stmt->bind_param("s", $title); # 's' means string
 	$stmt->execute();
 
 	# store result
@@ -49,9 +37,23 @@
 	$stmt->fetch();
 	$stmt->close();
 
-	$conn->close();
+	$data['nextTask'] = unserialize($tasks)[$newValue+1];
+	$challenges = unserialize($result); # get array object
+	if($data['nextTask'])
+		$challenges[$title] = $newValue; # update currentTask
+	else
+		$challenges[$title] = -1;
+	$challenges = serialize($challenges); # serialize for storage
 
-	$data['nextTask'] = unserialize($tasks)[$_POST['newValue']+1];
+	# bind challenge list to username
+	$stmt = $conn->prepare("UPDATE userInfo SET challenges = ? WHERE userName = ?");
+	if(!$stmt) die($conn->error);
+	$stmt->bind_param("bs", $challenges, $username); # 'b' means blob, 's' means string
+	$stmt->send_long_data(0, $challenges); # 0 means arg[0]. Have to send blobs this way as they may be super big
+	$stmt->execute();
+	$stmt->close();
+
+	$conn->close();
 
 	echo json_encode($data);
 ?>
