@@ -23,7 +23,7 @@
 
 	if(!$result){
 		echo json_encode(false);
-		die();
+		die(); //TODO error
 	}
 
 	# get next task info
