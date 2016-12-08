@@ -37,7 +37,7 @@
 	$data['nextTask'] = unserialize($tasks)[$newValue+1];
 	$challenges = unserialize($result); # get array object
 	if($data['nextTask'])
-		$challenges[$title] = $newValue; # update currentTask
+		$challenges[$title] = (int)$newValue; # update currentTask
 	else
 		$challenges[$title] = -1;
 	$challenges = serialize($challenges); # serialize for storage
