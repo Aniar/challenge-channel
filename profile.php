@@ -62,11 +62,14 @@
 
 			<h4> Add Existing Challenge: </h4>
 			<form action="bindChallenge.php" method="post" class="bindChallenge">
-				<label>Enter Creator's Username and Challenge's Title<br>
-					<input type="text" name="creator" placeholder="username" required>
+				<label for="username">Enter Creator's Username and Challenge's Title</label>
+				<div class="findChallenge">
+					<input type="text" name="creator" placeholder="username" id="username" required>
 					<input class="right" type="text" name="title" placeholder="title" required>
-				</label>
-				<input type="submit" value="Add Challenge" class="btn btn-default">
+				</div>
+				<div class="add-button">
+					<input type="submit" value="Add Challenge" class="btn btn-default">
+				</div>
 			</form>
 
 			<h3>Current Challenges</h3>

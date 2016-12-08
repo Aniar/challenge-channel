@@ -60,6 +60,15 @@ nav {
 	padding: 10px;
 }
 
+.findChallenge input {
+	float:left;
+	margin-top: 4px;
+}
+
+.add-button input {
+	margin-left: 10px;
+}
+
 /*
  * 
  * PAGES
