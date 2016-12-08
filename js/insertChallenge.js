@@ -43,19 +43,19 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			backgroundImage: 'url('+ $img.attr('src') +')'
 		});
 	  
-		  //adjust position
-		var pic = new Image();
-      	var imgWidth;
-      	var imgHeight;
-      	pic.src = $(".barImage img").attr('src');
-      	pic.onload = function() {
-        	imgWidth = pic.width;
-        	imgHeight = pic.height;
+		//   //adjust position
+		// var pic = new Image();
+  //     	var imgWidth;
+  //     	var imgHeight;
+  //     	pic.src = $(".barImage img").attr('src');
+  //     	pic.onload = function() {
+  //       	imgWidth = pic.width;
+  //       	imgHeight = pic.height;
         	$wraps.each(function() {
             	var pos = $(this).position();
             	$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/2)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
         	});
-      	}
+      	// }
 
 		$("div."+esc(progressBarId)).click(function() {
 			var idnum = $(this).attr('id').substring(1);
