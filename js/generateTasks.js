@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('input[name=numTasks]').keyup(generateTasks);
+	$('input[name=numTasks]').on('keyup change', generateTasks);
 });
 
 /* Generate input fields for tasks dynamically
