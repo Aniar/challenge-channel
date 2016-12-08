@@ -19,35 +19,35 @@
 		<h1>Edit Profile</h1>
 		<p>Need to edit your profile information? Enter the new information into a field below and click "Submit" after each one to save.</p>
 
-	<form action="changeInfo.php" method="post">
+	<form action="changeInfo.php" method="post" class="changeInfo">
 		<label>First Name <br>
 			<input type="text" name="firstName">
 		</label>
 		<input type="submit" value="Submit" class="btn btn-default">
 	</form>
 	<hr>
-	<form action="changeInfo.php" method="post">
+	<form action="changeInfo.php" method="post" class="changeInfo">
 		<label>Last Name <br>
 			<input type="text" name="lastName">
 		</label>
 		<input type="submit" value="Submit" class="btn btn-default">
 	</form>
 	<hr>
-	<form action="changeInfo.php" method="post">
+	<form action="changeInfo.php" method="post" class="changeInfo">
 		<label>Age <br>
 			<input type="number" name="age" min="1" max="150">
 		</label>
 		<input type="submit" value="Submit" class="btn btn-default">
 	</form>
 	<hr>
-	<form action="changeInfo.php" method="post">
+	<form action="changeInfo.php" method="post" class="changeInfo">
 		<label>Email <br>
 			<input type="email" name="email">
 		</label>
 		<input type="submit" value="Submit" class="btn btn-default">
 	</form>
 	<hr>
-	<form action="changeInfo.php" method="post">
+	<form action="changeInfo.php" method="post" class="changeInfo">
 		<label>Password <br>
 			<input type="password" name="password">
 		</label>

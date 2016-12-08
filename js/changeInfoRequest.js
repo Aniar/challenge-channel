@@ -1,7 +1,7 @@
 $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitting-ajax-forms-with-jquery
 
 		// process the form
-		$('form').submit(function(event) {
+		$('form.changeInfo').submit(function(event) {
 
 			$('#message').text(""); // clear message text
 			$('.error').text(""); // clear error text
