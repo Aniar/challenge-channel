@@ -8,10 +8,10 @@
 		die();
 	}
 
-	# non task stuff
+	$username = $_COOKIE['loggedIn'];
 	$summary = $_POST['summary'];
 	$numTasks = $_POST['numTasks'];
-	$title = $_COOKIE['loggedIn'].":".$_POST['title'];
+	$title = $username.":".$_POST['title'];
 
 	# get all tasks and serialize for storage
 	$tasks = serialize($_POST['task']);
@@ -29,6 +29,9 @@
 	$stmt->close();
 	$conn->close();
 
-	echo json_encode($title);
+	$data['username'] = $username;
+	$data['title'] = $_POST['title'];
+
+	echo json_encode($data);
 
 ?>

@@ -24,10 +24,11 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					if(data){
 						$('#message').text("Challenge created!");
 						// add challenge to profile page
+						var challengeData = "creator="+data.username+"&title="+data.title
 						$.ajax({
 							type 		: 'POST', // post request
 							url 		: 'bindChallenge.php', // php file to handle the post
-							data 		:  "title="+data, // data to be sent
+							data 		:  challengeData, // data to be sent
 							dataType 	: 'json', // data type expected back
 							encode		: true
 						});
