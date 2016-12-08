@@ -30,6 +30,8 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 							$('p.error').text("Database error");
 						}
 					}
+					else
+						console.log("Error");
 				});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();

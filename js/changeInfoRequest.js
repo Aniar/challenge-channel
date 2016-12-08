@@ -25,11 +25,12 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			})
 				.done(function(data) { //on ajax success
 					// if validation error
-					if(data.success)
+					if(data.success){
 						if(data.rows == 1)
 							$('#message').text(field+" updated");
 						else if(data.rows == 0)
 							$('#message').text(field+" already up to date");
+					}
 					else if(data.dupl)
 						$('p.error').text("Error: Email already in use");
 					else
