@@ -57,6 +57,15 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
         	});
       	// }
 
+      	$(".tile").mouseenter(function(){
+            var tileId = $(this).attr('id');
+            var idnum = tileId.substring(1, tileId.length);
+            $("#hover-task").text(idnum);
+        });
+        $(".tile").mouseleave(function(){
+            $("#hover-task").text(" ");
+        });
+
 		$("div."+esc(progressBarId)).click(function() {
 			var idnum = $(this).attr('id').substring(1);
 

@@ -87,6 +87,7 @@
 								$noSpaceTitle = preg_replace("/ /", "_", $title);
 								echo"<label id='${noSpaceTitle}' class='challenge'> $title
 										<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
+										<p id='hover-task'></p>
 										<div class='progressBar' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
 											<img src='img/road.jpg'/>
 										</div>
