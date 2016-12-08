@@ -86,7 +86,7 @@
 								$challengeData = getChallenge($title, $conn);
 								$tasks = unserialize($challengeData['tasks']);
 								$currentTaskInfo = $tasks[$currentTask+1];
-								$tasks = json_encode($tasks);
+								$tasks = json_encode($tasks,JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP);
 								$noSpaceTitle = preg_replace("/ /", "_", $title);
 								echo"<label id='${noSpaceTitle}' class='challenge'> $title
 										<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
