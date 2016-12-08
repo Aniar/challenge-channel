@@ -30,8 +30,10 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 							$('#message').text(field+" updated");
 						else if(data.rows == 0)
 							$('#message').text(field+" already up to date");
+					else if(data.dupl)
+						$('p.error').text("Error: Email already in use");
 					else
-						$('p.error').text("Error: " + data.error);
+						console.log(data.error);
 				});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();

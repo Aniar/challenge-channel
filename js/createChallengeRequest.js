@@ -21,7 +21,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			})
 				.done(function(data) { //on ajax success
 					// if validation error
-					if(data){
+					if(data.success){
 						$('#message').text("Challenge created!");
 						// add challenge to profile page
 						var challengeData = "creator="+data.username+"&title="+data.title
@@ -33,8 +33,10 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 							encode		: true
 						});
 					}
-					else
+					else{
+						console.log(data.error);
 						$('p.error').text("Error creating challenge.");
+					}
 				});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();

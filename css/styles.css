@@ -69,6 +69,11 @@ nav {
 	margin-left: 10px;
 }
 
+.error{
+	font-size: 1.5em;
+	color: red;
+}
+
 /*
  * 
  * PAGES
@@ -138,7 +143,7 @@ nav {
 }
 
 #message {
-	font-size: 24px;
+	font-size: 1.5em;
 }
 
 /*
@@ -184,43 +189,16 @@ nav {
 	border-radius: 0px;
 }
 
+span.error{ /*Error on signup.php*/
+	font-size: 1em;
+	color: red;
+}
+
 /*
  *
  * VENDORS
  *
  */
- 
-#progressbar span {
-    top: -30px;
-    left: 2%;
-    position: relative;
-    font-size: 1.4em;
-    font-weight: bolder;
-    font-family: monospace;
-    color: #fff;
-}
-
-progress {
-    background-color: #f3f3f3;
-    border: 0;
-    height: 2.5em;
-    width: 100%;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #e0eaf0;
-}
-
-progress::-webkit-progress-value {
-    background-color: #329ad1;
-}
-
-/*
-Error on signup.html
-*/
-span.error{
-	color: red;
-}
 
 .challenge > div{
     width: 400px;

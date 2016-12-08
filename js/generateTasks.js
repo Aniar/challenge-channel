@@ -26,7 +26,8 @@ function generateTasks(){
 	taskFields.push([
 		"<label class='task'> <br>",
 			"<input class='btn btn-default' type='submit' value='Create Challenge'>",
-		"</label>"].join("\n"));
+		"</label>"
+		].join("\n"));
 	//append it all
 	$('#challengeForm').append(taskFields.join("\n"));
 }

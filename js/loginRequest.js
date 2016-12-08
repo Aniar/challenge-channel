@@ -21,13 +21,15 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				.done(function(data) { //on ajax success
 					// if validation error
 					if(data){ //response recieved
-						if(data.errors)
-							$('p.error').text(data.errors.loginError);
-						else if(data.success)
+						if(data.success)
 							window.location = 'profile.php'
+						else if(data.errors.loginError)
+							$('p.error').text(data.errors.loginError);
+						else if(data.error.database){
+							console.log(data.error);
+							$('p.error').text("Database error");
+						}
 					}
-					else
-						$('p.error').text("Error");
 				});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();

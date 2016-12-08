@@ -3,14 +3,15 @@
 	require'loginInfo.php';
 
 	$username = $_COOKIE['loggedIn'];
+	$data['success'] = false;
 
 	# new connection using login stored in "loginInfo.php"
 	$conn = new mysqli($hostAddress, $uname, $pword, $database);
-	if($conn->connect_error) die($conn->connect_error);
+	if($conn->connect_error) databaseError($conn->connect_error);
 
 	# get bound challenges
 	$stmt = $conn->prepare("SELECT challenges FROM userInfo WHERE userName = ?");
-	if(!$stmt) die($conn->error);
+	if(!$stmt) databaseError($conn->error);
 	$stmt->bind_param("s", $username); # 's' means string
 	$stmt->execute();
 
@@ -25,7 +26,7 @@
 
 	# bind challenge list to username
 	$stmt = $conn->prepare("UPDATE userInfo SET challenges = ? WHERE userName = ?");
-	if(!$stmt) die($conn->error);
+	if(!$stmt) databaseError($conn->error);
 	$stmt->bind_param("bs", $challenges, $username); # 'b' means blob, 's' means string
 	$stmt->send_long_data(0, $challenges); # 0 means arg[0]. Have to send blobs this way as they may be super big
 	$stmt->execute();
@@ -33,5 +34,12 @@
 	$stmt->close();
 	$conn->close();
 
-	echo json_encode(true);
+	$data['success'] = true;
+	echo json_encode($data);
+
+	function databaseError($error){
+		$data['error'] = $error;
+		echo json_encode($data);
+		exit();
+	}
 ?>

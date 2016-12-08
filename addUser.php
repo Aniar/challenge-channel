@@ -20,7 +20,7 @@
 
 		# new connection using login stored in "loginInfo.php"
 		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
+		if($conn->connect_error) return databaseError($conn->connect_error);
 
 		$firstName = get_post($conn, 'firstName');
 		$lastName = get_post($conn, 'lastName');
@@ -46,7 +46,7 @@
 
 		# set up query and post it to database
 		$stmt = $conn->prepare("INSERT INTO userInfo VALUES(?,?,?,?,?,?,NULL)");
-		if(!$stmt) die($conn->error);
+		if(!$stmt) return databaseError($conn->error);
 		$stmt->bind_param("sssssi", $firstName, $lastName, $userName, $email, $password, $age); # 's' means string, 'i' is integer
 		$stmt->execute();
 
@@ -54,6 +54,12 @@
 		$conn->close();
 
 		$data['message'] = "Nice, your account has been created!";
+		return $data;
+	}
+
+	function databaseError($error){
+		$errors['database'] = $error;
+		$data['errors'] = $errors;
 		return $data;
 	}
 
@@ -66,7 +72,7 @@
 
 		# set up query and post it to database
 		$stmt = $database->prepare("SELECT userName FROM userInfo WHERE $fieldName = ?");
-		if(!$stmt) die($database->error);
+		if(!$stmt) databaseError($database->error);
 		$stmt->bind_param("s", $fieldValue);
 		$stmt->execute();
 		$stmt->store_result();

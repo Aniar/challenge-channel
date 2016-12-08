@@ -26,7 +26,7 @@
 			  <br>
 			  <input type="submit" value="Submit" class="btn btn-default">
 			</form>
-			<p class='error'></p>
+			<p class="error"></p>
 		</div>
 	</body>
 </html>

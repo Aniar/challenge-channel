@@ -16,11 +16,11 @@
 
 		# new connection using login stored in "loginInfo.php"
 		$conn = new mysqli($hostAddress, $uname, $pword, $database);
-		if($conn->connect_error) die($conn->connect_error);
+		if($conn->connect_error) databaseError($conn->connect_error);
 
 		# set up query and post it to database
 		$stmt = $conn->prepare("SELECT password FROM userInfo WHERE userName = ?");
-		if(!$stmt) die ($conn->error);
+		if(!$stmt) databaseError ($conn->error);
 		$stmt->bind_param("s", $username); #? replaced with $username
 		$stmt->execute();
 
@@ -42,5 +42,11 @@
 		}
 
 		return false;
+	}
+
+	function databaseError($error){
+		$data['errors']['database'] = $error;
+		echo json_encode($data);
+		exit();
 	}
 ?>

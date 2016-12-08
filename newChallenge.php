@@ -35,8 +35,8 @@
 			</label>
 		</form>
 
-		<p class='error'></p>
-		<p id='message'></p>
+		<p class="error"></p>
+		<p id="message"></p>
 		
 	</div><!-- .container -->
 </body><!-- #new-challenge -->

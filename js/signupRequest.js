@@ -41,6 +41,11 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 							$('#email-error').text(data.errors.email);
 						}
 
+						if (data.errors.database){
+							console.log(data.errors.database);
+							$("p.error").text("Database Error");
+						}
+
 					} else { // account created
 						$('#message').html(data.message + '<br> <a href="login.php">Login Here!</a>');
 					}

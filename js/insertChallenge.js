@@ -89,7 +89,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			encode		: true
 		})
 			.done(function(data) { //on ajax success
-				if(data){
+				if(!data.error){
 					if(data.nextTask)
 						$("p."+esc(space(title))).text("Up Next: " + data.nextTask);
 					else{
@@ -110,7 +110,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					}
 				}
 				else
-					console.log("update fug up");
+					console.log(data.error);
 			});
 	}
 
@@ -130,6 +130,9 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			data 		: formData, // data to be sent
 			dataType 	: 'json', // data type expected back
 			encode		: true
+		}).done(function(data){
+			if(data.error)
+				console.log(data.error);
 		});
 
 	});
@@ -151,7 +154,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			encode		: true
 		})
 			.done(function(data) { //on ajax success
-				if(data){
+				if(!data.error){
 					//add new challenge to profile
 					var progressBar = [
 						'<label id="'+space(data.title)+'"" class="challenge">' + data.title,
@@ -166,7 +169,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					$('#'+esc(space(data.title))).splitInTiles(data.numTasks,0);
 				}
 				else{
-					console.log("fuggg");
+					console.log(data.error);
 					// popup error or something
 				}
 			});
