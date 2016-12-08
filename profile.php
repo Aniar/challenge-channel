@@ -8,6 +8,7 @@
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
@@ -83,12 +84,13 @@
 							if($currentTask != -1){ # unfinished challenge
 								# get challenge info
 								$challengeData = getChallenge($title, $conn);
-								$currentTaskInfo = unserialize($challengeData['tasks'])[$currentTask+1];
+								$tasks = unserialize($challengeData['tasks']);
+								$currentTaskInfo = $tasks[$currentTask+1];
+								$tasks = json_encode($tasks);
 								$noSpaceTitle = preg_replace("/ /", "_", $title);
 								echo"<label id='${noSpaceTitle}' class='challenge'> $title
 										<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
-										<p id='hover-task'></p>
-										<div class='progressBar' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}'>
+										<div class='progressBar' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}' data-tasks='{$tasks}'>
 											<img src='img/road.jpg'/>
 										</div>
 										<br>

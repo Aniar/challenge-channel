@@ -46,7 +46,7 @@
 	$stmt->close();
 	$conn->close();
 
-	$newChallenge['tasks'] = unserialize($newChallenge['tasks'])[1];
+	$newChallenge['tasks'] = unserialize($newChallenge['tasks']);
 
 	echo json_encode($newChallenge);
 

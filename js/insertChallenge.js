@@ -3,7 +3,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 	/*
 	* Splits image into tiles to make a progress bar
 	*/
-	$.fn.splitInTiles = function(numTasks, currentTask) {
+	$.fn.splitInTiles = function(numTasks, currentTask, tasks) {
 
 		var progressBarId = $(this).attr('id');
 		var dim = {x:numTasks, y:1, gap:2};
@@ -19,11 +19,11 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		for ( var i = 0; i < n_tiles; i++ ) {
 			
 			if(i < currentTask){
-				var tileString = '<div id="n' + count + '" class="'+progressBarId+' tile"/>';
+				var tileString = '<div title="'+tasks[count]+'" id="n' + count + '" class="'+progressBarId+' tile"/>';
 				wraps.push(tileString);
 			}
 			else {
-			  var tileString = '<div id="n' + count + '" class="'+progressBarId+' tile incomplete"/>';
+			  var tileString = '<div title="'+tasks[count]+'" id="n' + count + '" class="'+progressBarId+' tile incomplete"/>';
 			  wraps.push(tileString);
 			}
 			count++;
@@ -43,28 +43,19 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			backgroundImage: 'url('+ $img.attr('src') +')'
 		});
 	  
-		//   //adjust position
+		  //adjust position
 		// var pic = new Image();
-  //     	var imgWidth;
-  //     	var imgHeight;
-  //     	pic.src = $(".barImage img").attr('src');
-  //     	pic.onload = function() {
-  //       	imgWidth = pic.width;
-  //       	imgHeight = pic.height;
-        	$wraps.each(function() {
-            	var pos = $(this).position();
-            	$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/2)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
-        	});
-      	// }
-
-      	$(".tile").mouseenter(function(){
-            var tileId = $(this).attr('id');
-            var idnum = tileId.substring(1, tileId.length);
-            $("#hover-task").text(idnum);
-        });
-        $(".tile").mouseleave(function(){
-            $("#hover-task").text(" ");
-        });
+		// var imgWidth;
+		// var imgHeight;
+		// pic.src = $(".barImage img").attr('src');
+		// pic.onload = function() {
+		// 	imgWidth = pic.width;
+		// 	imgHeight = pic.height;
+		// 	$wraps.each(function() {
+		// 		var pos = $(this).position();
+		// 		$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/2)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
+		// 	});
+		// }
 
 		$("div."+esc(progressBarId)).click(function() {
 			var idnum = $(this).attr('id').substring(1);
@@ -80,7 +71,8 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				}
 			});
 			updateCurrentTask(progressBarId.replace(/_/g, " "), idnum);
-	  });
+		});
+		$(".tile").tooltip();
 	};
 
 	/*
@@ -167,7 +159,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 					//add new challenge to profile
 					var progressBar = [
 						'<label id="'+space(data.title)+'"" class="challenge">' + data.title,
-							'<p class="'+space(data.title)+'">Up Next: '+ data.tasks +'</p>',
+							'<p class="'+space(data.title)+'">Up Next: '+ data.tasks[1] +'</p>',
 							'<div class="progressBar">',
 								'<img src="img/road.jpg"/>',
 							'</div>',
@@ -175,7 +167,7 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 						'</label>'
 					].join("\n");
 					$('#challenges').append(progressBar);
-					$('#'+esc(space(data.title))).splitInTiles(data.numTasks,0);
+					$('#'+esc(space(data.title))).splitInTiles(data.numTasks,0, data.tasks);
 				}
 				else{
 					console.log(data.error);
@@ -198,11 +190,14 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		return str.replace(/ /g, "_");
 	}
 
+	
 	if($('.challenge').length > 0){ // handle cached challenges
 		$('.challenge').each( function(){
+			console.log(JSON.parse($(this).children(".progressBar").attr('data-tasks')));
 			$(this).splitInTiles(
 				$(this).children(".progressBar").attr('data-numTasks'),
-				$(this).children(".progressBar").attr('data-currentTask')
+				$(this).children(".progressBar").attr('data-currentTask'),
+				JSON.parse($(this).children(".progressBar").attr('data-tasks'))
 			);
 		});
 	}
