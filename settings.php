@@ -58,7 +58,8 @@
 		<input type="submit" value="Delete Account" class="btn btn-default">
 	</form>
 
-	<p id='message'></p>
+	<p id="message"></p>
+	<p class="error"></p>
 	</div> <!-- .container .main -->
 </body>
 </html>

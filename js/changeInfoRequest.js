@@ -25,10 +25,10 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			})
 				.done(function(data) { //on ajax success
 					// if validation error
-					if(data)
+					if(data.success)
 						$('#message').text(field+" updated");
 					else
-						$('p.error').text("Error updating information");
+						$('p.error').text("Error: " + data.error);
 				});
 			// stop the form from submitting the normal way and refreshing the page
 			event.preventDefault();
