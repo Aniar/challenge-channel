@@ -47,13 +47,13 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		var pic = new Image();
 		var imgWidth;
 		var imgHeight;
-		pic.src = $(".barImage img").attr('src');
+		pic.src = $(".progressBar img").attr('src');
 		pic.onload = function() {
 			imgWidth = pic.width;
 			imgHeight = pic.height;
 			$wraps.each(function() {
 				var pos = $(this).position();
-				$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/2)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
+				$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/4)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
 			});
 		}
 
