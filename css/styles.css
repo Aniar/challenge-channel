@@ -200,6 +200,9 @@ span.error{ /*Error on signup.php*/
  *
  */
 
+.challenge{
+	font-weight: bold;
+}
 .challenge > div{
     width: 400px;
     height: 40px;

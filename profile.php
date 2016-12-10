@@ -88,13 +88,16 @@
 								$currentTaskInfo = $tasks[$currentTask+1];
 								$tasks = json_encode($tasks,JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP);
 								$noSpaceTitle = preg_replace("/ /", "_", $title);
-								echo"<label id='${noSpaceTitle}' class='challenge'> $title
+								echo"<div id='${noSpaceTitle}' class='challenge'> $title
 										<p class='{$noSpaceTitle}'>Up Next: {$currentTaskInfo}</p>
 										<div class='progressBar' data-currentTask='{$currentTask}' data-numTasks='{$challengeData['numTasks']}' data-tasks='{$tasks}'>
 											<img src='img/road.jpg'/>
 										</div>
+										<form action='removeChallenge.php' method='post' class='removeChallenge'>
+											<input type='submit' value='Remove' class='btn btn-default'>
+										</form>
 										<br>
-									</label>";
+									</div>";
 							}
 						}
 						unset($currentTask); # required after foreach loop

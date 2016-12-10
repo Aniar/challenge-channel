@@ -44,18 +44,18 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 		});
 	  
 		  //adjust position
-		// var pic = new Image();
-		// var imgWidth;
-		// var imgHeight;
-		// pic.src = $(".barImage img").attr('src');
-		// pic.onload = function() {
-		// 	imgWidth = pic.width;
-		// 	imgHeight = pic.height;
-		// 	$wraps.each(function() {
-		// 		var pos = $(this).position();
-		// 		$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/2)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
-		// 	});
-		// }
+		var pic = new Image();
+		var imgWidth;
+		var imgHeight;
+		pic.src = $(".barImage img").attr('src');
+		pic.onload = function() {
+			imgWidth = pic.width;
+			imgHeight = pic.height;
+			$wraps.each(function() {
+				var pos = $(this).position();
+				$(this).css( 'backgroundPosition', -(pos.left+(imgWidth/2)) +'px '+ -(pos.top+(imgHeight/2)) +'px' );
+			});
+		}
 
 		$("div."+esc(progressBarId)).click(function() {
 			var idnum = $(this).attr('id').substring(1);
@@ -115,10 +115,9 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			});
 	}
 
-	$('form.removeChallenge').submit(function(event) {
-
+	function removeChallenge(event){
 		//get challenge to remove
-		var deleteId = $(this).attr('data-deleteId');
+		var deleteId = $(this).parent().attr('id').replace(/_/g, " ");
 		// get data from form
 		var formData = "title="+deleteId;
 		//remove challenge
@@ -135,8 +134,9 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 			if(data.error)
 				console.log(data.error);
 		});
-
-	});
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+	}
 
 	// process the form
 	$('form.bindChallenge').submit(function(event) {
@@ -158,22 +158,71 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 				if(!data.error){
 					//add new challenge to profile
 					var progressBar = [
-						'<label id="'+space(data.title)+'"" class="challenge">' + data.title,
+						'<div id="'+space(data.title)+'"" class="challenge">' + data.title,
 							'<p class="'+space(data.title)+'">Up Next: '+ data.tasks[1] +'</p>',
 							'<div class="progressBar">',
 								'<img src="img/road.jpg"/>',
 							'</div>',
+							'<form action="removeChallenge.php" method="post" class="removeChallenge">',
+								'<input type="submit" value="Remove" class="btn btn-default">',
+							'</form>',
 							'<br>',
-						'</label>'
+						'</div>'
 					].join("\n");
 					$('#challenges').append(progressBar);
 					$('#'+esc(space(data.title))).splitInTiles(data.numTasks,0, data.tasks);
+					$('form.removeChallenge').submit(function(event) {
+						//get challenge to remove
+						var deleteId = $(this).parent().attr('id').replace(/_/g, " ");
+						// get data from form
+						var formData = "title="+deleteId;
+						//remove challenge
+						$("#"+esc(space(deleteId))).remove();
+
+						// delete challenge from database
+						$.ajax({
+							type 		: 'POST', // post request
+							url 		: 'removeChallenge.php', // php file to handle the post
+							data 		: formData, // data to be sent
+							dataType 	: 'json', // data type expected back
+							encode		: true
+						}).done(function(data){
+							if(data.error)
+								console.log(data.error);
+						});
+						// stop the form from submitting the normal way and refreshing the page
+						event.preventDefault();
+					});
 				}
 				else{
 					console.log(data.error);
 					// popup error or something
 				}
 			});
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+	});
+
+	$('form.removeChallenge').submit(function(event) {
+
+		//get challenge to remove
+		var deleteId = $(this).parent().attr('id').replace(/_/g, " ");
+		// get data from form
+		var formData = "title="+deleteId;
+		//remove challenge
+		$("#"+esc(space(deleteId))).remove();
+
+		// delete challenge from database
+		$.ajax({
+			type 		: 'POST', // post request
+			url 		: 'removeChallenge.php', // php file to handle the post
+			data 		: formData, // data to be sent
+			dataType 	: 'json', // data type expected back
+			encode		: true
+		}).done(function(data){
+			if(data.error)
+				console.log(data.error);
+		});
 		// stop the form from submitting the normal way and refreshing the page
 		event.preventDefault();
 	});
@@ -193,7 +242,6 @@ $(document).ready(function() { // ideas from https://scotch.io/tutorials/submitt
 	
 	if($('.challenge').length > 0){ // handle cached challenges
 		$('.challenge').each( function(){
-			console.log(JSON.parse($(this).children(".progressBar").attr('data-tasks')));
 			$(this).splitInTiles(
 				$(this).children(".progressBar").attr('data-numTasks'),
 				$(this).children(".progressBar").attr('data-currentTask'),
